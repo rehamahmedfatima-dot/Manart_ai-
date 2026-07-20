@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>منارة الذكاء | Manarat AI - دليل شامل لأدوات الذكاء الاصطناعي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --bg-primary: #f6f9fc;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f0f4f9;
+            --bg-section: #edf2f7;
+            --text-primary: #0b1a2e;
+            --text-secondary: #2d3f54;
+            --text-muted: #5e6f82;
+            --border-color: #dce3ec;
+            --shadow: 0 8px 24px rgba(0, 20, 40, 0.06);
+            --shadow-hover: 0 16px 40px rgba(0, 20, 40, 0.12);
+            --radius: 18px;
+            --radius-sm: 12px;
+            --transition: 0.3s cubic-bezier(0.2, 0, 0, 1);
+            --accent: #2563eb;
+            --accent-light: #3b82f6;
+            --accent-glow: rgba(37, 99, 235, 0.15);
+            --free-badge: #16a34a;
+            --free-bg: #dcfce7;
+            --paid-badge: #dc2626;
+            --paid-bg: #fee2e2;
+            --header-bg: rgba(255, 255, 255, 0.82);
+        }
+        [data-theme="dark"] {
+            --bg-primary: #0b1424;
+            --bg-secondary: #111d2f;
+            --bg-card: #172b3f;
+            --bg-card-hover: #1e344c;
+            --bg-section: #0f1d30;
+            --text-primary: #eaf0f8;
+            --text-secondary: #b6cbe0;
+            --text-muted: #7e96b0;
+            --border-color: #1e344c;
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 16px 40px rgba(0, 0, 0, 0.5);
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.2);
+            --header-bg: rgba(11, 20, 36, 0.88);
+            --free-badge: #4ade80;
+            --free-bg: #1a3a2a;
+            --paid-badge: #f87171;
+            --paid-bg: #3f1f1f;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background var(--transition), color var(--transition);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 0 20px 60px;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--header-bg);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 0;
+            margin: 0 -20px 25px;
+            padding-left: 20px;
+            padding-right: 20px;
+            transition: background var(--transition), border var(--transition);
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.4rem;
+            font-weight: 800;
+        }
+        .logo i {
+            color: #fbbf24; /* لون المصباح الذهبي */
+        }
+        .logo span {
+            background: linear-gradient(135deg, #2563eb, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .logo .sub {
+            font-weight: 400;
+            font-size: 0.75rem;
+            -webkit-text-fill-color: var(--text-muted);
+            background: none;
+            color: var(--text-muted);
+            margin-right: 4px;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 40px;
+            padding: 6px 14px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all var(--transition);
+        }
+        .theme-toggle:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent);
+        }
+        .stats-badge {
+            background: var(--accent-glow);
+            color: var(--accent);
+            padding: 5px 14px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .hero {
+            text-align: center;
+            padding: 20px 0 10px;
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--text-primary) 30%, #2563eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 700px;
+            margin: 6px auto 0;
+        }
+        .section-nav {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 6px 14px;
+            margin: 20px 0 30px;
+            padding: 10px 20px;
+            background: var(--bg-secondary);
+            border-radius: 60px;
+            border: 1px solid var(--border-color);
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+        }
+        .section-nav::-webkit-scrollbar {
+            height: 4px;
+        }
+        .section-nav::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+        .section-nav a {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            padding: 4px 14px;
+            border-radius: 40px;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+        .section-nav a:hover,
+        .section-nav a.active {
+            color: var(--text-primary);
+            background: var(--bg-card-hover);
+        }
+        .section-nav a i {
+            font-size: 0.9rem;
+        }
+        .category {
+            margin-bottom: 48px;
+        }
+        .category-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-color);
+        }
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .category-title i {
+            font-size: 1.5rem;
+        }
+        .category-title .badge-count {
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: var(--bg-card-hover);
+            color: var(--text-muted);
+            padding: 2px 12px;
+            border-radius: 40px;
+        }
+        .tier-tabs {
+            display: flex;
+            gap: 4px;
+            background: var(--bg-card);
+            padding: 4px;
+            border-radius: 40px;
+            border: 1px solid var(--border-color);
+        }
+        .tier-tab {
+            padding: 5px 16px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .tier-tab.active {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 4px 12px var(--accent-glow);
+        }
+        .tier-tab:hover:not(.active) {
+            background: var(--bg-card-hover);
+        }
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 18px;
+            margin-top: 12px;
+        }
+        .tool-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 18px 18px 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            transition: all var(--transition);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            animation: fadeUp 0.4s ease both;
+        }
+        .tool-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
+            background: var(--bg-card-hover);
+        }
+        .tool-card .tier-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 2px 12px;
+            border-radius: 30px;
+            text-transform: uppercase;
+        }
+        .tier-badge.free {
+            background: var(--free-bg);
+            color: var(--free-badge);
+        }
+        .tier-badge.paid {
+            background: var(--paid-bg);
+            color: var(--paid-badge);
+        }
+        .tool-card .tool-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            background: var(--bg-section);
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+        .tool-card .tool-name {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+        .tool-card .tool-name a {
+            color: var(--text-primary);
+            transition: color var(--transition);
+        }
+        .tool-card .tool-name a:hover {
+            color: var(--accent);
+        }
+        .tool-card .tool-name .external {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            opacity: 0.6;
+            margin-right: 4px;
+        }
+        .tool-card .tool-desc {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            margin: 4px 0 10px;
+            flex: 1;
+            line-height: 1.5;
+        }
+        .tool-card .tool-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-top: auto;
+        }
+        .tool-card .tool-tags span {
+            background: var(--bg-section);
+            color: var(--text-secondary);
+            font-size: 0.6rem;
+            padding: 2px 10px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+        }
+        .empty-state {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-muted);
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            border: 1px dashed var(--border-color);
+            grid-column: 1/-1;
+        }
+        .footer {
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        .footer a {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            .section-nav {
+                border-radius: 30px;
+                padding: 8px 14px;
+            }
+            .category-title {
+                font-size: 1.1rem;
+            }
+            .tool-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 12px;
+            }
+            .header-inner {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 6px;
+            }
+            .logo {
+                justify-content: center;
+            }
+            .header-actions {
+                justify-content: center;
+            }
+            .tier-tabs {
+                width: 100%;
+                justify-content: center;
+            }
+            .tier-tab {
+                flex: 1;
+                text-align: center;
+                padding: 4px 8px;
+                font-size: 0.7rem;
+            }
+            .category-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 6px;
+            }
+        }
+        @media (max-width: 480px) {
+            body {
+                padding: 0 10px 40px;
+            }
+            .header {
+                margin: 0 -10px 15px;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            .tool-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header-inner">
+            <div class="logo">
+                <i class="fas fa-lightbulb"></i>
+                <span>منارة الذكاء</span>
+                <span class="sub">| Manarat AI</span>
+            </div>
+            <div class="header-actions">
+                <span class="stats-badge" id="totalStats">
+                    <i class="fas fa-robot"></i>  <span id="toolCount">0</span> أداة
+                </span>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                    <span id="themeLabel">داكن</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>🏛️ منارة الذكاء | Manarat AI</h1>
+            <p>الدليل الشامل لأكثر من ١٠٠٠ أداة ذكاء اصطناعي — كتابة، تصميم، صوت، فيديو، استضافة، أتمتة، تحليلات، تعليم، تسويق، وأكثر</p>
+        </section>
+
+        <nav class="section-nav" id="sectionNav"></nav>
+        <div id="sectionsContainer"></div>
+
+        <footer class="footer">
+            <p><i class="fas fa-lightbulb" style="margin-left:6px; color: #fbbf24;"></i> منارة الذكاء · دليلك الشامل لعالم الذكاء الاصطناعي — <a href="#">Manarat AI</a> · ٢٠٢٦ · <span style="color:var(--text-muted);font-size:0.8rem;">(يمكنك إضافة آلاف الأدوات بسهولة)</span></p>
+        </footer>
+    </main>
+
+    <script>
+        // ================================================================
+        //  DATA — أكثر من 1000 أداة موزعة على 50+ قسم
+        // ================================================================
+        const categories = [{
+            id: 'writing',
+            name: 'كتابة المحتوى',
+            icon: 'fa-solid fa-pen-fancy',
+            tools: [
+                { name: 'Jasper', desc: 'مساعد كتابة متقدم للمحتوى التسويقي والطويل.', tier: 'paid',
+                    icon: 'fa-solid fa-feather-pointed', tags: ['تسويق', 'طويل'], url: 'https://www.jasper.ai/' },
+                { name: 'Copy.ai', desc: 'توليد محتوى تسويقي وإعلاني بسرعة البرق.', tier: 'free',
+                    icon: 'fa-solid fa-copy', tags: ['تسويق', 'سريع'], url: 'https://www.copy.ai/' },
+                { name: 'Writesonic', desc: 'أداة متكاملة لكتابة المقالات والإعلانات.', tier: 'free',
+                    icon: 'fa-solid fa-pen-nib', tags: ['مقالات', 'إعلانات'], url: 'https://writesonic.com/' },
+                { name: 'Rytr', desc: 'مساعد كتابة ذكي بأسعار منخفضة جداً.', tier: 'free', icon: 'fa-solid fa-robot',
+                    tags: ['اقتصادي', 'ذكي'], url: 'https://rytr.me/' },
+                { name: 'Anyword', desc: 'تحليل وتوليد نصوص تسويقية بناءً على البيانات.', tier: 'paid',
+                    icon: 'fa-solid fa-chart-line', tags: ['تسويق', 'تحليل'], url: 'https://anyword.com/' },
+                { name: 'Wordtune', desc: 'إعادة صياغة النصوص وتحسينها بأسلوب احترافي.', tier: 'free',
+                    icon: 'fa-solid fa-arrows-rotate', tags: ['تحسين', 'صياغة'], url: 'https://www.wordtune.com/' },
+                { name: 'Sudowrite', desc: 'أداة كتابة إبداعية للروايات والقصص.', tier: 'paid', icon: 'fa-solid fa-book',
+                    tags: ['إبداع', 'روايات'], url: 'https://www.sudowrite.com/' },
+                { name: 'Quillbot', desc: 'إعادة صياغة وتلخيص النصوص بجودة عالية.', tier: 'free',
+                    icon: 'fa-solid fa-paragraph', tags: ['تلخيص', 'صياغة'], url: 'https://quillbot.com/' },
+                { name: 'Frase', desc: 'كتابة محتوى محسّن لمحركات البحث (SEO).', tier: 'paid', icon: 'fa-solid fa-magnifying-glass',
+                    tags: ['SEO', 'محتوى'], url: 'https://www.frase.io/' },
+                { name: 'Outranking', desc: 'منصة متكاملة لكتابة محتوى SEO المدعوم بالذكاء.', tier: 'paid',
+                    icon: 'fa-solid fa-ranking-star', tags: ['SEO', 'تحليل'], url: 'https://outranking.io/' },
+                { name: 'ContentBot', desc: 'توليد محتوى آلي للمدونات ووسائل التواصل.', tier: 'free',
+                    icon: 'fa-solid fa-blog', tags: ['مدونات', 'تواصل'], url: 'https://contentbot.ai/' },
+                { name: 'Hypotenuse AI', desc: 'كتابة محتوى منتجات وصور وصفية.', tier: 'paid', icon: 'fa-solid fa-cube',
+                    tags: ['منتجات', 'وصف'], url: 'https://hypotenuse.ai/' },
+                { name: 'Peppertype', desc: 'إنشاء محتوى تسويقي عالي الجودة بسرعة.', tier: 'free',
+                    icon: 'fa-solid fa-pepper-hot', tags: ['تسويق', 'جودة'], url: 'https://www.peppertype.ai/' },
+                { name: 'LongShot', desc: 'كتابة محتوى طويل المدعوم بالبحث والبيانات.', tier: 'paid',
+                    icon: 'fa-solid fa-file-lines', tags: ['طويل', 'بحث'], url: 'https://www.longshot.ai/' },
+                { name: 'ClosersCopy', desc: 'أداة كتابة إعلانات ومحتوى مبيعات بقوالب جاهزة.', tier: 'paid',
+                    icon: 'fa-solid fa-bullseye', tags: ['مبيعات', 'إعلانات'], url: 'https://www.closerscopy.com/' },
+                { name: 'INK Editor', desc: 'كتابة محتوى محسن لتحسين محركات البحث.', tier: 'paid',
+                    icon: 'fa-solid fa-highlighter', tags: ['SEO', 'تحسين'], url: 'https://inkforall.com/' },
+                { name: 'Kafkai', desc: 'توليد محتوى آلي للعديد من المجالات.', tier: 'paid', icon: 'fa-solid fa-robot',
+                    tags: ['آلي', 'مجالات'], url: 'https://kafkai.com/' },
+                { name: 'Copymatic', desc: 'مساعد كتابة شامل مع أكثر من 50 قالباً.', tier: 'free',
+                    icon: 'fa-solid fa-copy', tags: ['قوالب', 'شامل'], url: 'https://copymatic.ai/' },
+                { name: 'Scalenut', desc: 'منصة كتابة محتوى مدعومة بالذكاء لتحسين SEO.', tier: 'paid',
+                    icon: 'fa-solid fa-scale-balanced', tags: ['SEO', 'منصة'], url: 'https://scalenut.com/' },
+                { name: 'NeuralText', desc: 'أداة كتابة محتوى تعتمد على تحليل المنافسين.', tier: 'paid',
+                    icon: 'fa-solid fa-brain', tags: ['تحليل', 'منافسين'], url: 'https://neuraltext.com/' },
+                { name: 'GetGenie', desc: 'مساعد كتابة للمحتوى التسويقي والمدونات.', tier: 'paid',
+                    icon: 'fa-solid fa-genie', tags: ['تسويق', 'مدونات'], url: 'https://getgenie.ai/' },
+                { name: 'Article Forge', desc: 'توليد مقالات طويلة بجودة عالية تلقائياً.', tier: 'paid',
+                    icon: 'fa-solid fa-file', tags: ['مقالات', 'تلقائي'], url: 'https://www.articleforge.com/' },
+                { name: 'Simplified', desc: 'منصة كتابة وتصميم بإمكانيات ذكاء اصطناعي.', tier: 'free',
+                    icon: 'fa-solid fa-simplybuilt', tags: ['كتابة', 'تصميم'], url: 'https://simplified.com/' },
+                { name: 'ParagraphAI', desc: 'أداة كتابة سريعة تعتمد على الذكاء الاصطناعي.', tier: 'free',
+                    icon: 'fa-solid fa-paragraph', tags: ['سريعة', 'ذكاء'], url: 'https://paragraphai.com/' },
+                { name: 'Compose AI', desc: 'مساعد كتابة يعمل في المتصفح لتسريع الكتابة.', tier: 'free',
+                    icon: 'fa-solid fa-pen', tags: ['متصفح', 'تسريع'], url: 'https://www.compose.ai/' },
+                { name: 'Smart Copy', desc: 'أداة كتابة سريعة من Unbounce لتوليد النصوص.', tier: 'free',
+                    icon: 'fa-solid fa-wand-magic', tags: ['سريعة', 'Unbounce'], url: 'https://unbounce.com/product/smart-copy/' },
+                { name: 'CopySmith', desc: 'توليد نصوص تسويقية وإعلانية بجودة عالية.', tier: 'paid',
+                    icon: 'fa-solid fa-copy', tags: ['تسويق', 'إعلانات'], url: 'https://copysmith.ai/' },
+                { name: 'Draft', desc: 'مساعد كتابة للفرق مع اقتراحات ذكية.', tier: 'paid', icon: 'fa-solid fa-users',
+                    tags: ['فرق', 'اقتراحات'], url: 'https://draft.co/' },
+                { name: 'Typewise', desc: 'كتابة سريعة وتصحيح تلقائي باستخدام الذكاء.', tier: 'free',
+                    icon: 'fa-solid fa-keyboard', tags: ['سريعة', 'تصحيح'], url: 'https://www.typewise.app/' },
+                { name: 'TextCortex', desc: 'مساعد كتابة متعدد اللغات مع تحليل النصوص.', tier: 'free',
+                    icon: 'fa-solid fa-language', tags: ['لغات', 'تحليل'], url: 'https://textcortex.com/' }
+            ]
+        }, {
+            id: 'editing',
+            name: 'تحرير النصوص',
+            icon: 'fa-solid fa-spell-check',
+            tools: [
+                { name: 'Grammarly', desc: 'مدقق نحوي ولغوي شامل للنصوص الإنجليزية.', tier: 'free',
+                    icon: 'fa-solid fa-check-double', tags: ['لغة', 'تدقيق'], url: 'https://www.grammarly.com/' },
+                { name: 'ProWritingAid', desc: 'أداة تحرير متقدمة للكتّاب والمؤلفين.', tier: 'paid',
+                    icon: 'fa-solid fa-pen-ruler', tags: ['كتّاب', 'تحرير'], url: 'https://prowritingaid.com/' },
+                { name: 'LanguageTool', desc: 'مدقق لغوي متعدد اللغات مفتوح المصدر.', tier: 'free',
+                    icon: 'fa-solid fa-language', tags: ['لغات متعددة', 'مفتوح'], url: 'https://languagetool.org/' },
+                { name: 'Hemingway Editor', desc: 'تحسين وضوح النصوص وتبسيط الجمل.', tier: 'free',
+                    icon: 'fa-solid fa-eraser', tags: ['وضوح', 'تبسيط'], url: 'https://hemingwayapp.com/' },
+                { name: 'Ginger', desc: 'مدقق نحوي مع ميزات إعادة الصياغة والترجمة.', tier: 'free',
+                    icon: 'fa-solid fa-ginger', tags: ['ترجمة', 'صياغة'], url: 'https://www.gingersoftware.com/' },
+                { name: 'Sapling', desc: 'مساعد كتابة للفرق والمؤسسات مع اقتراحات ذكية.', tier: 'free',
+                    icon: 'fa-solid fa-tree', tags: ['فرق', 'مؤسسات'], url: 'https://sapling.ai/' },
+                { name: 'Trinka', desc: 'مدقق نحوي متخصص للمقالات العلمية والأكاديمية.', tier: 'free',
+                    icon: 'fa-solid fa-flask', tags: ['أكاديمي', 'علمي'], url: 'https://www.trinka.ai/' },
+                { name: 'WhiteSmoke', desc: 'مدقق شامل مع قوالب جاهزة للكتابة.', tier: 'paid', icon: 'fa-solid fa-smoke',
+                    tags: ['قوالب', 'شامل'], url: 'https://www.whitesmoke.com/' },
+                { name: 'GrammarlyGO', desc: 'نسخة متطورة من Grammarly مع توليد نصوص.', tier: 'paid',
+                    icon: 'fa-solid fa-star', tags: ['متطورة', 'توليد'], url: 'https://www.grammarly.com/go' },
+                { name: 'WordRake', desc: 'تحسين النصوص القانونية والإدارية.', tier: 'paid', icon: 'fa-solid fa-gavel',
+                    tags: ['قانونية', 'إدارية'], url: 'https://wordrake.com/' },
+                { name: 'Correcto', desc: 'مدقق لغوي وإملائي متقدم للغة الإسبانية.', tier: 'free',
+                    icon: 'fa-solid fa-check', tags: ['إسبانية', 'إملاء'], url: 'https://correcto.app/' },
+                { name: 'Rephraser.co', desc: 'إعادة صياغة النصوص بعدة أساليب.', tier: 'free',
+                    icon: 'fa-solid fa-rotate', tags: ['صياغة', 'أساليب'], url: 'https://rephraser.co/' },
+                { name: 'Scribbr', desc: 'مدقق نحوي للطلاب والباحثين.', tier: 'free', icon: 'fa-solid fa-graduation-cap',
+                    tags: ['طلاب', 'باحثين'], url: 'https://www.scribbr.com/' },
+                { name: 'Outwrite', desc: 'مساعد كتابة مع تحليل النصوص وتحسينها.', tier: 'free',
+                    icon: 'fa-solid fa-pen', tags: ['تحليل', 'تحسين'], url: 'https://outwrite.com/' }
+            ]
+        }, {
+            id: 'audio',
+            name: 'الصوت والصوتيات',
+            icon: 'fa-solid fa-headphones',
+            tools: [
+                { name: 'Murf.ai', desc: 'تحويل النصوص إلى صوت طبيعي بأصوات متعددة.', tier: 'paid',
+                    icon: 'fa-solid fa-microphone', tags: ['نص إلى صوت', 'طبيعي'], url: 'https://murf.ai/' },
+                { name: 'ElevenLabs', desc: 'أصوات واقعية جداً وتوليد صوتي احترافي.', tier: 'free',
+                    icon: 'fa-solid fa-waveform', tags: ['واقعي', 'احترافي'], url: 'https://elevenlabs.io/' },
+                { name: 'Resemble AI', desc: 'توليد أصوات مخصصة وتقليد الأصوات البشرية.', tier: 'paid',
+                    icon: 'fa-solid fa-user-astronaut', tags: ['تخصيص', 'تقليد'], url: 'https://www.resemble.ai/' },
+                { name: 'Play.ht', desc: 'تحويل النصوص إلى صوت بجودة عالية وواجهة سهلة.', tier: 'free',
+                    icon: 'fa-solid fa-play', tags: ['جودة', 'سهل'], url: 'https://play.ht/' },
+                { name: 'Descript', desc: 'تحرير الصوت والفيديو عبر النصوص (تحرير نصي).', tier: 'paid',
+                    icon: 'fa-solid fa-pen', tags: ['تحرير', 'نصي'], url: 'https://www.descript.com/' },
+                { name: 'WellSaid', desc: 'أصوات طبيعية للمشاريع التعليمية والتجارية.', tier: 'paid',
+                    icon: 'fa-solid fa-circle-check', tags: ['تعليمي', 'تجاري'], url: 'https://wellsaidlabs.com/' },
+                { name: 'Lovo.ai', desc: 'منصة شاملة للأصوات وتوليد الصوتيات الإبداعية.', tier: 'paid',
+                    icon: 'fa-solid fa-music', tags: ['إبداعي', 'شامل'], url: 'https://www.lovo.ai/' },
+                { name: 'Speechelo', desc: 'تحويل النصوص إلى صوت مع تأثيرات واقعية.', tier: 'paid',
+                    icon: 'fa-solid fa-volume-high', tags: ['واقعي', 'تأثيرات'], url: 'https://speechelo.com/' },
+                { name: 'Listnr', desc: 'أداة صوتية للبودكاست والمحتوى الصوتي.', tier: 'free', icon: 'fa-solid fa-podcast',
+                    tags: ['بودكاست', 'محتوى'], url: 'https://listnr.tech/' },
+                { name: 'Otter.ai', desc: 'تفريغ صوتي تلقائي للمحاضرات والاجتماعات.', tier: 'free',
+                    icon: 'fa-solid fa-file-audio', tags: ['تفريغ', 'اجتماعات'], url: 'https://otter.ai/' },
+                { name: 'Fireflies.ai', desc: 'تسجيل وتحليل اجتماعات الفريق مع ملاحظات ذكية.', tier: 'free',
+                    icon: 'fa-solid fa-people-group', tags: ['اجتماعات', 'تحليل'], url: 'https://fireflies.ai/' },
+                { name: 'Auphonic', desc: 'تحسين جودة الصوت وإزالة الضوضاء تلقائياً.', tier: 'free',
+                    icon: 'fa-solid fa-wave-square', tags: ['تحسين', 'ضوضاء'], url: 'https://auphonic.com/' },
+                { name: 'Podcastle', desc: 'تسجيل وتحرير البودكاست مع ميزات ذكاء اصطناعي.', tier: 'free',
+                    icon: 'fa-solid fa-podcast', tags: ['بودكاست', 'تسجيل'], url: 'https://podcastle.ai/' },
+                { name: 'Zencastr', desc: 'تسجيل بودكاست عن بُعد بجودة عالية.', tier: 'free', icon: 'fa-solid fa-microphone',
+                    tags: ['بودكاست', 'عن بُعد'], url: 'https://zencastr.com/' },
+                { name: 'Riverside.fm', desc: 'تسجيل فيديو وصوت احترافي مع ضيوف عن بُعد.', tier: 'paid',
+                    icon: 'fa-solid fa-video', tags: ['فيديو', 'ضيوف'], url: 'https://riverside.fm/' },
+                { name: 'Cleanvoice', desc: 'إزالة الحشو والأخطاء من التسجيلات الصوتية.', tier: 'paid',
+                    icon: 'fa-solid fa-eraser', tags: ['حشو', 'أخطاء'], url: 'https://cleanvoice.ai/' },
+                { name: 'Altered Studio', desc: 'تحرير الصوت وتغيير الأصوات باستخدام الذكاء.', tier: 'paid',
+                    icon: 'fa-solid fa-edit', tags: ['تحرير', 'تغيير'], url: 'https://altered.ai/' },
+                { name: 'Sonix', desc: 'تفريغ صوتي وتحليل المحتوى بدقة عالية.', tier: 'paid', icon: 'fa-solid fa-file-audio',
+                    tags: ['تفريغ', 'دقة'], url: 'https://sonix.ai/' },
+                { name: 'Rev', desc: 'خدمة تفريغ صوتي وترجمة بشرية وآلية.', tier: 'paid', icon: 'fa-solid fa-user',
+                    tags: ['تفريغ', 'ترجمة'], url: 'https://www.rev.com/' },
+                { name: 'Temi', desc: 'تفريغ صوتي سريع بتقنية الذكاء الاصطناعي.', tier: 'paid', icon: 'fa-solid fa-bolt',
+                    tags: ['سريع', 'تفريغ'], url: 'https://www.temi.com/' },
+                { name: 'Speechify', desc: 'تحويل النصوص إلى صوت والاستماع إليها.', tier: 'free',
+                    icon: 'fa-solid fa-headphones', tags: ['استماع', 'نص إلى صوت'], url: 'https://speechify.com/' },
+                { name: 'NaturalReader', desc: 'تحويل النصوص إلى صوت بطريقة طبيعية.', tier: 'free',
+                    icon: 'fa-solid fa-book-open', tags: ['طبيعية', 'نص إلى صوت'], url: 'https://www.naturalreaders.com/' }
+            ]
+        }, {
+            id: 'video-download',
+            name: 'تحميل الفيديوهات',
+            icon: 'fa-solid fa-download',
+            tools: [
+                { name: '4K Video Downloader', desc: 'تحميل فيديوهات بجودة 4K من يوتيوب ومنصات متعددة.', tier: 'free',
+                    icon: 'fa-solid fa-4k', tags: ['4K', 'يوتيوب'], url: 'https://www.4kdownload.com/' },
+                { name: 'y2mate', desc: 'تحميل فيديوهات من يوتيوب بصيغ متعددة.', tier: 'free', icon: 'fa-solid fa-youtube',
+                    tags: ['يوتيوب', 'صيغ'], url: 'https://y2mate.com/' },
+                { name: 'SaveFrom.net', desc: 'تحميل فيديوهات من يوتيوب، فيسبوك، وإنستا.', tier: 'free',
+                    icon: 'fa-solid fa-download', tags: ['يوتيوب', 'فيسبوك'], url: 'https://savefrom.net/' },
+                { name: 'Snaptik (TikTok)', desc: 'تحميل فيديوهات تيك توك بدون علامة مائية.', tier: 'free',
+                    icon: 'fa-brands fa-tiktok', tags: ['تيك توك', 'بدون علامة'], url: 'https://snaptik.app/' },
+                { name: 'SSSTikTok', desc: 'تحميل فيديوهات تيك توك بجودة عالية.', tier: 'free',
+                    icon: 'fa-brands fa-tiktok', tags: ['تيك توك', 'جودة'], url: 'https://ssstik.io/' },
+                { name: 'Inflact (Insta)', desc: 'تحميل فيديوهات وصور من إنستغرام بسهولة.', tier: 'free',
+                    icon: 'fa-brands fa-instagram', tags: ['إنستغرام', 'صور'], url: 'https://inflact.com/downloader/' },
+                { name: 'FBDown (FB)', desc: 'تحميل فيديوهات من فيسبوك بجودة عالية.', tier: 'free',
+                    icon: 'fa-brands fa-facebook', tags: ['فيسبوك', 'جودة'], url: 'https://fbdown.net/' },
+                { name: 'YT5s', desc: 'تحميل فيديوهات يوتيوب وتيك توك بصيغ مختلفة.', tier: 'free', icon: 'fa-solid fa-5g',
+                    tags: ['يوتيوب', 'تيك توك'], url: 'https://yt5s.com/' },
+                { name: 'ClipConverter', desc: 'تحويل وتحميل فيديوهات من عدة منصات.', tier: 'free',
+                    icon: 'fa-solid fa-rotate', tags: ['تحويل', 'منصات'], url: 'https://clipconverter.cc/' },
+                { name: 'SaveFrom (بديل)', desc: 'تحميل فيديوهات من فيسبوك وإنستا ويوتيوب.', tier: 'free',
+                    icon: 'fa-solid fa-cloud-arrow-down', tags: ['متعدد', 'سريع'], url: 'https://en.savefrom.net/' },
+                { name: 'GetFvid', desc: 'تحميل فيديوهات من فيسبوك بسهولة.', tier: 'free', icon: 'fa-brands fa-facebook',
+                    tags: ['فيسبوك', 'سهل'], url: 'https://getfvid.com/' },
+                { name: 'InstaDP', desc: 'تحميل صورة الملف الشخصي والفيديوهات من إنستا.', tier: 'free',
+                    icon: 'fa-brands fa-instagram', tags: ['إنستا', 'صورة'], url: 'https://instadp.com/' },
+                { name: 'TikSave', desc: 'تحميل فيديوهات تيك توك بجودة عالية.', tier: 'free', icon: 'fa-brands fa-tiktok',
+                    tags: ['تيك توك', 'جودة'], url: 'https://tiksave.com/' },
+                { name: 'Video Downloader Plus', desc: 'تحميل فيديوهات من جميع المنصات.', tier: 'free',
+                    icon: 'fa-solid fa-video', tags: ['جميع', 'منصات'], url: 'https://videodownloader.plus/' }
+            ]
+        }, {
+            id: 'design',
+            name: 'التصميم والجرافيك',
+            icon: 'fa-solid fa-palette',
+            tools: [
+                { name: 'Canva', desc: 'منصة التصميم الأشهر لإنشاء الجرافيك بسهولة.', tier: 'free',
+                    icon: 'fa-brands fa-canva', tags: ['جرافيك', 'سهل'], url: 'https://www.canva.com/' },
+                { name: 'Adobe Express', desc: 'أداة تصميم سريعة من Adobe مع قوالب جاهزة.', tier: 'free',
+                    icon: 'fa-brands fa-adobe', tags: ['Adobe', 'قوالب'], url: 'https://www.adobe.com/express/' },
+                { name: 'Figma', desc: 'أداة تصميم واجهات المستخدم والتعاون الجماعي.', tier: 'free',
+                    icon: 'fa-brands fa-figma', tags: ['UI/UX', 'تعاون'], url: 'https://www.figma.com/' },
+                { name: 'Visme', desc: 'إنشاء عروض تقديمية وتصاميم مرئية تفاعلية.', tier: 'free',
+                    icon: 'fa-solid fa-chart-pie', tags: ['عروض', 'تفاعلي'], url: 'https://www.visme.co/' },
+                { name: 'Crello', desc: 'تصميم جرافيك ومنشورات وسائل التواصل.', tier: 'free',
+                    icon: 'fa-solid fa-image', tags: ['تواصل', 'منشورات'], url: 'https://crello.com/' },
+                { name: 'Picsart', desc: 'تحرير الصور والتصميم الإبداعي بلمسات احترافية.', tier: 'free',
+                    icon: 'fa-solid fa-wand-magic-sparkles', tags: ['تحرير', 'إبداعي'], url: 'https://picsart.com/' },
+                { name: 'Snappa', desc: 'تصميم جرافيك سريع للوسائل الاجتماعية.', tier: 'free',
+                    icon: 'fa-solid fa-bolt', tags: ['سريع', 'تواصل'], url: 'https://snappa.com/' },
+                { name: 'Desygner', desc: 'تصميم احترافي بلمسة ذكاء اصطناعي.', tier: 'free',
+                    icon: 'fa-solid fa-pen', tags: ['احترافي', 'ذكاء'], url: 'https://desygner.com/' },
+                { name: 'Pixlr', desc: 'تحرير صور احترافي في المتصفح مجاناً.', tier: 'free', icon: 'fa-solid fa-crop',
+                    tags: ['تحرير', 'متصفح'], url: 'https://pixlr.com/' },
+                { name: 'Remove.bg', desc: 'إزالة خلفية الصور تلقائياً بدقة عالية.', tier: 'free',
+                    icon: 'fa-solid fa-eraser', tags: ['خلفية', 'دقة'], url: 'https://www.remove.bg/' },
+                { name: 'Clipdrop', desc: 'أدوات متعددة لتحسين الصور والتصميم.', tier: 'free',
+                    icon: 'fa-solid fa-droplet', tags: ['تحسين', 'أدوات'], url: 'https://clipdrop.co/' },
+                { name: 'Looka', desc: 'تصميم شعارات وعلامات تجارية بالذكاء الاصطناعي.', tier: 'paid',
+                    icon: 'fa-solid fa-crown', tags: ['شعارات', 'علامات'], url: 'https://looka.com/' },
+                { name: 'Brandmark', desc: 'إنشاء هوية بصرية وشعارات فريدة.', tier: 'paid', icon: 'fa-solid fa-brush',
+                    tags: ['هوية', 'فريدة'], url: 'https://brandmark.io/' },
+                { name: 'LogoAI', desc: 'إنشاء شعارات باستخدام الذكاء الاصطناعي.', tier: 'paid',
+                    icon: 'fa-solid fa-crown', tags: ['شعارات', 'AI'], url: 'https://logoai.com/' },
+                { name: 'DesignEvo', desc: 'تصميم شعارات بقوالب جاهزة وتحرير مرن.', tier: 'free',
+                    icon: 'fa-solid fa-pen', tags: ['قوالب', 'مرن'], url: 'https://www.designevo.com/' },
+                { name: 'Hatchful', desc: 'منصة Shopify لتصميم الشعارات بسهولة.', tier: 'free',
+                    icon: 'fa-brands fa-shopify', tags: ['Shopify', 'سهل'], url: 'https://hatchful.shopify.com/' },
+                { name: 'Tailor Brands', desc: 'تصميم هوية بصرية وشعارات متكاملة.', tier: 'paid',
+                    icon: 'fa-solid fa-scissors', tags: ['هوية', 'متكاملة'], url: 'https://www.tailorbrands.com/' },
+                { name: 'Vectr', desc: 'تصميم رسوميات متجهة مجاناً في المتصفح.', tier: 'free',
+                    icon: 'fa-solid fa-vector-square', tags: ['متجهة', 'متصفح'], url: 'https://vectr.com/' },
+                { name: 'Fotor', desc: 'تحرير الصور والتصميم الإبداعي بلمسات AI.', tier: 'free',
+                    icon: 'fa-solid fa-camera', tags: ['تحرير', 'AI'], url: 'https://www.fotor.com/' },
+                { name: 'BeFunky', desc: 'تحرير الصور وتصميم الجرافيك بسهولة.', tier: 'free',
+                    icon: 'fa-solid fa-smile', tags: ['تحرير', 'سهل'], url: 'https://www.befunky.com/' },
+                { name: 'PicMonkey', desc: 'تحرير صور وتصميم جرافيك احترافي.', tier: 'paid', icon: 'fa-solid fa-monkey',
+                    tags: ['احترافي', 'تحرير'], url: 'https://www.picmonkey.com/' }
+            ]
+        }, {
+            id: 'web-hosting',
+            name: 'بناء المواقع والاستضافة',
+            icon: 'fa-solid fa-server',
+            tools: [
+                { name: 'Netlify', desc: 'استضافة مواقع ثابتة وتطبيقات واجهة أمامية بسهولة.', tier: 'free',
+                    icon: 'fa-solid fa-netlify', tags: ['ثابتة', 'Jamstack'], url: 'https://www.netlify.com/' },
+                { name: 'Vercel', desc: 'منصة استضافة للمطورين مع دعم Next.js.', tier: 'free',
+                    icon: 'fa-solid fa-vercel', tags: ['مطورين', 'Next.js'], url: 'https://vercel.com/' },
+                { name: 'InfinityFree', desc: 'استضافة ويب مجانية مدى الحياة مع دعم PHP.', tier: 'free',
+                    icon: 'fa-solid fa-infinity', tags: ['مجانية', 'PHP'], url: 'https://www.infinityfree.com/' },
+                { name: 'Heroku', desc: 'استضافة تطبيقات سحابية متكاملة مع عدة لغات.', tier: 'paid',
+                    icon: 'fa-solid fa-cloud', tags: ['سحابية', 'لغات متعددة'], url: 'https://www.heroku.com/' },
+                { name: 'Render', desc: 'استضافة سحابية سهلة للتطبيقات والمواقع.', tier: 'free',
+                    icon: 'fa-solid fa-cube', tags: ['سحابية', 'سهلة'], url: 'https://render.com/' },
+                { name: 'Kinsta', desc: 'استضافة مُدارة عالية الأداء لوردبريس.', tier: 'paid',
+                    icon: 'fa-brands fa-wordpress', tags: ['وردبريس', 'مُدارة'], url: 'https://kinsta.com/' },
+                { name: 'WP Engine', desc: 'استضافة احترافية لمواقع ووردبريس.', tier: 'paid',
+                    icon: 'fa-brands fa-wordpress', tags: ['وردبريس', 'احترافية'], url: 'https://wpengine.com/' },
+                { name: 'Bluehost', desc: 'استضافة موثوقة للمواقع مع دعم ووردبريس.', tier: 'paid',
+                    icon: 'fa-solid fa-hosting', tags: ['موثوقة', 'مبتدئين'], url: 'https://www.bluehost.com/' },
+                { name: 'SiteGround', desc: 'استضافة عالية السرعة مع دعم فني ممتاز.', tier: 'paid',
+                    icon: 'fa-solid fa-gem', tags: ['سرعة', 'دعم'], url: 'https://www.siteground.com/' },
+                { name: 'Cloudflare Pages', desc: 'استضافة مواقع Jamstack مع شبكة توصيل سريعة.', tier: 'free',
+                    icon: 'fa-solid fa-cloudflare', tags: ['Jamstack', 'CDN'], url: 'https://pages.cloudflare.com/' },
+                { name: 'GitHub Pages', desc: 'استضافة مجانية للمواقع الثابتة مباشرة من مستودعاتك.', tier: 'free',
+                    icon: 'fa-brands fa-github', tags: ['مجانية', 'ثابتة'], url: 'https://pages.github.com/' },
+                { name: 'Surge.sh', desc: 'استضافة مواقع ثابتة بأمر واحد من الطرفية.', tier: 'free',
+                    icon: 'fa-solid fa-terminal', tags: ['ثابتة', 'CLI'], url: 'https://surge.sh/' },
+                { name: '000webhost', desc: 'استضافة مجانية مع دعم PHP و MySQL.', tier: 'free',
+                    icon: 'fa-solid fa-zero', tags: ['مجانية', 'PHP'], url: 'https://www.000webhost.com/' },
+                { name: 'AwardSpace', desc: 'استضافة مجانية بدون إعلانات مع دعم للمطورين.', tier: 'free',
+                    icon: 'fa-solid fa-trophy', tags: ['مجانية', 'مطورين'], url: 'https://www.awardspace.com/' },
+                { name: 'Wix AI', desc: 'إنشاء مواقع باستخدام الذكاء الاصطناعي مع واجهة سحب وإفلات.', tier: 'paid',
+                    icon: 'fa-brands fa-wix', tags: ['ذكاء', 'سحب'], url: 'https://www.wix.com/ai' },
+                { name: 'Durable', desc: 'إنشاء مواقع احترافية باستخدام الذكاء الاصطناعي.', tier: 'paid',
+                    icon: 'fa-solid fa-rocket', tags: ['احترافية', 'ذكاء'], url: 'https://durable.co/' },
+                { name: '10Web', desc: 'إنشاء مواقع ووردبريس باستخدام الذكاء الاصطناعي.', tier: 'paid',
+                    icon: 'fa-brands fa-wordpress', tags: ['وردبريس', 'ذكاء'], url: 'https://10web.io/' },
+                { name: 'Bookmark', desc: 'منصة إنشاء مواقع باستخدام مساعد AI.', tier: 'paid',
+                    icon: 'fa-solid fa-bookmark', tags: ['مساعد', 'AI'], url: 'https://www.bookmark.com/' },
+                { name: 'Zyro', desc: 'إنشاء مواقع متاجر إلكترونية باستخدام الذكاء.', tier: 'paid',
+                    icon: 'fa-solid fa-store', tags: ['متاجر', 'ذكاء'], url: 'https://zyro.com/' },
+                { name: 'Webflow AI', desc: 'منصة تصميم مواقع متقدمة مع ميزات ذكاء اصطناعي.', tier: 'paid',
+                    icon: 'fa-solid fa-w', tags: ['تصميم', 'متقدمة'], url: 'https://webflow.com/' }
+            ]
+        }, {
+            id: 'seo',
+            name: 'تحسين محركات البحث (SEO)',
+            icon: 'fa-solid fa-magnifying-glass-chart',
+            tools: [
+                { name: 'Ahrefs', desc: 'أداة تحليل الروابط الخلفية والكلمات المفتاحية.', tier: 'paid',
+                    icon: 'fa-solid fa-link', tags: ['روابط', 'كلمات'], url: 'https://ahrefs.com/' },
+                { name: 'Semrush', desc: 'منصة شاملة لتحسين محركات البحث والتسويق.', tier: 'paid',
+                    icon: 'fa-solid fa-chart-simple', tags: ['شاملة', 'تسويق'], url: 'https://www.semrush.com/' },
+                { name: 'Moz', desc: 'أدوات تحليل ومراقبة ترتيب مواقعك في البحث.', tier: 'paid', icon: 'fa-solid fa-bar-chart',
+                    tags: ['مراقبة', 'ترتيب'], url: 'https://moz.com/' },
+                { name: 'Ubersuggest', desc: 'أداة بحث عن الكلمات المفتاحية من Neil Patel.', tier: 'free',
+                    icon: 'fa-solid fa-lightbulb', tags: ['كلمات', 'مجانية'], url: 'https://neilpatel.com/ubersuggest/' },
+                { name: 'SurferSEO', desc: 'تحليل وتحسين المحتوى ليتوافق مع خوارزميات البحث.', tier: 'paid',
+                    icon: 'fa-solid fa-water', tags: ['محتوى', 'خوارزميات'], url: 'https://surferseo.com/' },
+                { name: 'Clearscope', desc: 'تحسين جودة المحتوى بناءً على التحليل اللغوي.', tier: 'paid',
+                    icon: 'fa-solid fa-eye', tags: ['جودة', 'لغوي'], url: 'https://www.clearscope.io/' },
+                { name: 'RankMath', desc: 'إضافة ووردبريس لتحسين السيو بسهولة.', tier: 'free',
+                    icon: 'fa-brands fa-wordpress', tags: ['ووردبريس', 'سهل'], url: 'https://rankmath.com/' },
+                { name: 'Yoast', desc: 'أشهر إضافة لتحسين محركات البحث في ووردبريس.', tier: 'free',
+                    icon: 'fa-brands fa-wordpress', tags: ['ووردبريس', 'شهير'], url: 'https://yoast.com/' },
+                { name: 'Screaming Frog', desc: 'أداة لتحليل هياكل المواقع والروابط.', tier: 'free',
+                    icon: 'fa-solid fa-frog', tags: ['هياكل', 'روابط'], url: 'https://www.screamingfrog.co.uk/' },
+                { name: 'SpyFu', desc: 'تحليل منافسين البحث والكلمات المفتاحية.', tier: 'paid',
+                    icon: 'fa-solid fa-user-secret', tags: ['منافسين', 'كلمات'], url: 'https://www.spyfu.com/' },
+                { name: 'Majestic', desc: 'تحليل الروابط الخلفية وثقة الموقع.', tier: 'paid', icon: 'fa-solid fa-m',
+                    tags: ['روابط', 'ثقة'], url: 'https://majestic.com/' },
+                { name: 'SE Ranking', desc: 'منصة شاملة لتحليل ومراقبة ترتيب المواقع.', tier: 'paid',
+                    icon: 'fa-solid fa-ranking-star', tags: ['مراقبة', 'شاملة'], url: 'https://seranking.com/' },
+                { name: 'Sitechecker', desc: 'مراقبة وتحسين أداء موقعك في محركات البحث.', tier: 'paid',
+                    icon: 'fa-solid fa-check-circle', tags: ['مراقبة', 'أداء'], url: 'https://sitechecker.pro/' },
+                { name: 'DeepCrawl', desc: 'أداة تدقيق تقني متقدمة للمواقع الكبيرة.', tier: 'paid',
+                    icon: 'fa-solid fa-crawl', tags: ['تدقيق', 'تقني'], url: 'https://www.deepcrawl.com/' },
+                { name: 'SEO PowerSuite', desc: 'مجموعة أدوات متكاملة لتحسين محركات البحث.', tier: 'paid',
+                    icon: 'fa-solid fa-plug', tags: ['مجموعة', 'متكاملة'], url: 'https://www.seopowersuite.com/' }
+            ]
+        }, {
+            id: 'productivity',
+            name: 'الإنتاجية وإدارة المهام',
+            icon: 'fa-solid fa-list-check',
+            tools: [
+                { name: 'Notion AI', desc: 'مساعد كتابة وتنظيم داخل منصة Notion.', tier: 'paid',
+                    icon: 'fa-solid fa-note-sticky', tags: ['كتابة', 'تنظيم'], url: 'https://www.notion.so/product/ai' },
+                { name: 'Monday.com', desc: 'منصة إدارة المشاريع بلمسات ذكاء اصطناعي.', tier: 'paid',
+                    icon: 'fa-solid fa-calendar-days', tags: ['مشاريع', 'فرق'], url: 'https://monday.com/' },
+                { name: 'Asana', desc: 'تتبع المهام والمشاريع مع مساعد ذكي.', tier: 'free', icon: 'fa-solid fa-tasks',
+                    tags: ['مهام', 'مشاريع'], url: 'https://asana.com/' },
+                { name: 'Trello', desc: 'لوحات كانبان لإدارة المهام ببساطة.', tier: 'free', icon: 'fa-brands fa-trello',
+                    tags: ['كانبان', 'بسيط'], url: 'https://trello.com/' },
+                { name: 'ClickUp', desc: 'منصة إنتاجية متكاملة مع ميزات AI.', tier: 'free', icon: 'fa-solid fa-up-right-and-down-left-from-center',
+                    tags: ['متكاملة', 'AI'], url: 'https://clickup.com/' },
+                { name: 'Airtable', desc: 'قواعد بيانات سحابية بواجهة جداول ذكية.', tier: 'free',
+                    icon: 'fa-solid fa-table', tags: ['قواعد', 'جداول'], url: 'https://airtable.com/' },
+                { name: 'Zapier', desc: 'ربط التطبيقات وإنشاء أتمتة بدون برمجة.', tier: 'free', icon: 'fa-solid fa-zap',
+                    tags: ['أتمتة', 'ربط'], url: 'https://zapier.com/' },
+                { name: 'Make (Integromat)', desc: 'أتمتة متقدمة بين التطبيقات بسهولة.', tier: 'free',
+                    icon: 'fa-solid fa-gears', tags: ['أتمتة', 'متقدمة'], url: 'https://www.make.com/' },
+                { name: 'IFTTT', desc: 'أنشئ سلاسل أتمتة بسيطة بين خدماتك المفضلة.', tier: 'free',
+                    icon: 'fa-solid fa-arrow-right-arrow-left', tags: ['بسيطة', 'خدمات'], url: 'https://ifttt.com/' },
+                { name: 'Smartsheet', desc: 'منصة إدارة المشاريع والجداول الذكية.', tier: 'paid',
+                    icon: 'fa-solid fa-sheet-plastic', tags: ['مشاريع', 'جداول'], url: 'https://www.smartsheet.com/' },
+                { name: 'Todoist', desc: 'إدارة المهام اليومية بذكاء وتنظيم.', tier: 'free', icon: 'fa-solid fa-list',
+                    tags: ['مهام', 'تنظيم'], url: 'https://todoist.com/' },
+                { name: 'TickTick', desc: 'إدارة المهام والوقت مع ميزات ذكية.', tier: 'free', icon: 'fa-solid fa-clock',
+                    tags: ['مهام', 'وقت'], url: 'https://ticktick.com/' },
+                { name: 'Evernote', desc: 'تدوين الملاحظات مع ميزات ذكاء اصطناعي.', tier: 'free',
+                    icon: 'fa-solid fa-note-sticky', tags: ['تدوين', 'ملاحظات'], url: 'https://evernote.com/' },
+                { name: 'Obsidian', desc: 'منصة تدوين مرنة مع دعم الذكاء الاصطناعي.', tier: 'free',
+                    icon: 'fa-solid fa-obsidian', tags: ['تدوين', 'مرنة'], url: 'https://obsidian.md/' },
+                { name: 'Roam Research', desc: 'أداة تدوين شبكية للباحثين.', tier: 'paid', icon: 'fa-solid fa-connectdevelop',
+                    tags: ['شبكية', 'باحثين'], url: 'https://roamresearch.com/' },
+                { name: 'Logseq', desc: 'منصة تدوين مفتوحة المصدر شبكية.', tier: 'free', icon: 'fa-solid fa-link',
+                    tags: ['مفتوحة', 'شبكية'], url: 'https://logseq.com/' },
+                { name: 'Coda', desc: 'مستندات تفاعلية مع ميزات ذكاء اصطناعي.', tier: 'free', icon: 'fa-solid fa-c',
+                    tags: ['مستندات', 'تفاعلية'], url: 'https://coda.io/' },
+                { name: 'Slite', desc: 'منصة كتابة وتعاون جماعية.', tier: 'free', icon: 'fa-solid fa-people-arrows',
+                    tags: ['كتابة', 'تعاون'], url: 'https://slite.com/' },
+                { name: 'Mem', desc: 'تدوين الملاحظات مع تنظيم تلقائي بالذكاء.', tier: 'free',
+                    icon: 'fa-solid fa-memory', tags: ['تدوين', 'تنظيم'], url: 'https://mem.ai/' },
+                { name: 'Reflect', desc: 'أداة تدوين ذكية مع ربط الأفكار.', tier: 'paid', icon: 'fa-solid fa-lightbulb',
+                    tags: ['تدوين', 'أفكار'], url: 'https://reflect.app/' },
+                { name: 'Glasp', desc: 'جمع وتنظيم المحتوى من الويب بذكاء.', tier: 'free', icon: 'fa-solid fa-glasses',
+                    tags: ['جمع', 'تنظيم'], url: 'https://glasp.co/' },
+                { name: 'MyMind', desc: 'تنظيم المحتوى الخاص بك باستخدام الذكاء.', tier: 'free',
+                    icon: 'fa-solid fa-brain', tags: ['تنظيم', 'ذكاء'], url: 'https://mymind.com/' },
+                { name: 'Taskade', desc: 'إدارة المهام والمشاريع مع ميزات ذكاء.', tier: 'free',
+                    icon: 'fa-solid fa-tasks', tags: ['مهام', 'مشاريع'], url: 'https://taskade.com/' }
+            ]
+        }, {
+            id: 'translation',
+            name: 'الترجمة',
+            icon: 'fa-solid fa-language',
+            tools: [
+                { name: 'DeepL', desc: 'أداة ترجمة دقيقة بأسلوب طبيعي.', tier: 'free', icon: 'fa-solid fa-deepl',
+                    tags: ['دقيقة', 'طبيعي'], url: 'https://www.deepl.com/' },
+                { name: 'Google Translate', desc: 'الترجمة الأشهر مع دعم لأكثر من 100 لغة.', tier: 'free',
+                    icon: 'fa-brands fa-google', tags: ['شاملة', 'مجانية'], url: 'https://translate.google.com/' },
+                { name: 'Microsoft Translator', desc: 'ترجمة نصية وصوتية مدمجة مع مايكروسوفت.', tier: 'free',
+                    icon: 'fa-brands fa-microsoft', tags: ['نصية', 'صوتية'], url: 'https://www.microsoft.com/translator' },
+                { name: 'Reverso', desc: 'ترجمة مع أمثلة سياقية لتعلم اللغات.', tier: 'free', icon: 'fa-solid fa-book-open',
+                    tags: ['سياق', 'تعلم'], url: 'https://www.reverso.net/' },
+                { name: 'Lingvanex', desc: 'ترجمة فورية للنصوص والمواقع.', tier: 'free', icon: 'fa-solid fa-earth',
+                    tags: ['فورية', 'مواقع'], url: 'https://lingvanex.com/' },
+                { name: 'Translated', desc: 'ترجمة احترافية بمساعدة الذكاء الاصطناعي.', tier: 'paid',
+                    icon: 'fa-solid fa-briefcase', tags: ['احترافية', 'مساعدة'], url: 'https://translated.com/' },
+                { name: 'SYSTRAN', desc: 'ترجمة آلية للمؤسسات والشركات.', tier: 'paid', icon: 'fa-solid fa-building',
+                    tags: ['مؤسسات', 'شركات'], url: 'https://www.systran.net/' },
+                { name: 'Lilt', desc: 'ترجمة بشرية مدعومة بالذكاء للشركات.', tier: 'paid', icon: 'fa-solid fa-handshake',
+                    tags: ['بشرية', 'شركات'], url: 'https://lilt.com/' },
+                { name: 'Memsource', desc: 'منصة ترجمة تعاونية مع ذكاء اصطناعي.', tier: 'paid',
+                    icon: 'fa-solid fa-users-cog', tags: ['تعاونية', 'ذكاء'], url: 'https://www.memsource.com/' },
+                { name: 'Crowdin', desc: 'إدارة مشاريع الترجمة مع دعم الذكاء.', tier: 'paid', icon: 'fa-solid fa-cloud',
+                    tags: ['مشاريع', 'ذكاء'], url: 'https://crowdin.com/' }
+            ]
+        }, {
+            id: 'research',
+            name: 'البحث الأكاديمي والعلمي',
+            icon: 'fa-solid fa-microscope',
+            tools: [
+                { name: 'Elicit', desc: 'استخراج وتحليل الأبحاث العلمية باستخدام الذكاء.', tier: 'free',
+                    icon: 'fa-solid fa-flask', tags: ['أبحاث', 'تحليل'], url: 'https://elicit.org/' },
+                { name: 'ResearchGate', desc: 'منصة تواصل بين الباحثين مع أدوات ذكية.', tier: 'free',
+                    icon: 'fa-solid fa-user-graduate', tags: ['تواصل', 'باحثين'], url: 'https://www.researchgate.net/' },
+                { name: 'Semantic Scholar', desc: 'محرك بحث علمي يعتمد على الذكاء الاصطناعي.', tier: 'free',
+                    icon: 'fa-solid fa-graduation-cap', tags: ['بحث', 'AI'], url: 'https://www.semanticscholar.org/' },
+                { name: 'Connected Papers', desc: 'استكشاف العلاقات بين الأوراق العلمية.', tier: 'free',
+                    icon: 'fa-solid fa-network-wired', tags: ['علاقات', 'أوراق'], url: 'https://www.connectedpapers.com/' },
+                { name: 'Scite', desc: 'تحليل الاستشهادات وتقييم الأبحاث.', tier: 'paid', icon: 'fa-solid fa-quote-right',
+                    tags: ['استشهادات', 'تقييم'], url: 'https://scite.ai/' },
+                { name: 'Consensus', desc: 'البحث العلمي المدعوم بالذكاء لإجابات دقيقة.', tier: 'free',
+                    icon: 'fa-solid fa-handshake', tags: ['دقة', 'إجابات'], url: 'https://consensus.app/' },
+                { name: 'Zotero', desc: 'إدارة المراجع العلمية مع ميزات ذكاء.', tier: 'free',
+                    icon: 'fa-solid fa-book', tags: ['مراجع', 'إدارة'], url: 'https://www.zotero.org/' },
+                { name: 'Mendeley', desc: 'أداة لإدارة الأبحاث والمراجع العلمية.', tier: 'free',
+                    icon: 'fa-solid fa-book-open', tags: ['أبحاث', 'مراجع'], url: 'https://www.mendeley.com/' },
+                { name: 'SciSpace', desc: 'تحليل واستخراج المعلومات من الأبحاث.', tier: 'free',
+                    icon: 'fa-solid fa-space-shuttle', tags: ['استخراج', 'تحليل'], url: 'https://scispace.com/' },
+                { name: 'Trinka AI', desc: 'مدقق نحوي متخصص للأبحاث العلمية.', tier: 'free', icon: 'fa-solid fa-flask',
+                    tags: ['نحوي', 'علمية'], url: 'https://www.trinka.ai/' }
+            ]
+        }, {
+            id: 'chatbots',
+            name: 'الشات بوت والمساعدين',
+            icon: 'fa-solid fa-comment-dots',
+            tools: [
+                { name: 'ChatGPT', desc: 'نموذج محادثة متقدم من OpenAI.', tier: 'free', icon: 'fa-brands fa-openai',
+                    tags: ['محادثة', 'عام'], url: 'https://chat.openai.com/' },
+                { name: 'Claude', desc: 'نموذج محادثة من Anthropic بقدرات تحليل عميقة.', tier: 'free',
+                    icon: 'fa-solid fa-message', tags: ['تحليل', 'عميق'], url: 'https://claude.ai/' },
+                { name: 'Gemini (Bard)', desc: 'مساعد جوجل المدعوم بالذكاء الاصطناعي.', tier: 'free',
+                    icon: 'fa-brands fa-google', tags: ['جوجل', 'مساعد'], url: 'https://gemini.google.com/' },
+                { name: 'Bing AI', desc: 'محرك بحث مايكروسوفت مع مساعد ذكي مدمج.', tier: 'free',
+                    icon: 'fa-brands fa-microsoft', tags: ['بحث', 'مدمج'], url: 'https://www.bing.com/chat' },
+                { name: 'Perplexity', desc: 'محرك بحث يعتمد على الذكاء الاصطناعي مع مصادر.', tier: 'free',
+                    icon: 'fa-solid fa-magnifying-glass', tags: ['بحث', 'مصادر'], url: 'https://www.perplexity.ai/' },
+                { name: 'Poe', desc: 'منصة تجمع عدة نماذج محادثة في مكان واحد.', tier: 'free',
+                    icon: 'fa-solid fa-robot', tags: ['نماذج', 'متعددة'], url: 'https://poe.com/' },
+                { name: 'Character.AI', desc: 'التحدث مع شخصيات افتراضية ذكية.', tier: 'free',
+                    icon: 'fa-solid fa-user-astronaut', tags: ['شخصيات', 'افتراضية'], url: 'https://character.ai/' },
+                { name: 'HuggingChat', desc: 'نموذج مفتوح المصدر للمحادثة من Hugging Face.', tier: 'free',
+                    icon: 'fa-solid fa-face-smile', tags: ['مفتوح', 'مصدر'], url: 'https://huggingface.co/chat/' },
+                { name: 'Pi', desc: 'مساعد شخصي ذكي من Inflection AI.', tier: 'free', icon: 'fa-solid fa-robot',
+                    tags: ['شخصي', 'ذكي'], url: 'https://pi.ai/' },
+                { name: 'YouChat', desc: 'مساعد محادثة مدمج مع محرك بحث You.com.', tier: 'free',
+                    icon: 'fa-solid fa-you', tags: ['بحث', 'مدمج'], url: 'https://you.com/chat' },
+                { name: 'Komo', desc: 'مساعد بحث ذكي مع إجابات مباشرة.', tier: 'free', icon: 'fa-solid fa-comment',
+                    tags: ['بحث', 'إجابات'], url: 'https://komo.ai/' }
+            ]
+        }, {
+            id: 'data',
+            name: 'تحليل البيانات',
+            icon: 'fa-solid fa-chart-pie',
+            tools: [
+                { name: 'Tableau', desc: 'أداة تحليل وتصور البيانات الاحترافية.', tier: 'paid',
+                    icon: 'fa-solid fa-chart-scatter', tags: ['تصور', 'احترافي'], url: 'https://www.tableau.com/' },
+                { name: 'Power BI', desc: 'منصة مايكروسوفت لتحليل الأعمال والبيانات.', tier: 'paid',
+                    icon: 'fa-brands fa-microsoft', tags: ['أعمال', 'مايكروسوفت'], url: 'https://powerbi.microsoft.com/' },
+                { name: 'Google Data Studio', desc: 'إنشاء لوحات تحكم وتقارير تفاعلية مجاناً.', tier: 'free',
+                    icon: 'fa-brands fa-google', tags: ['تقارير', 'مجانية'], url: 'https://lookerstudio.google.com/' },
+                { name: 'Looker', desc: 'منصة ذكاء أعمال وتحليل بيانات متقدمة.', tier: 'paid', icon: 'fa-solid fa-eye',
+                    tags: ['أعمال', 'متقدمة'], url: 'https://looker.com/' },
+                { name: 'MonkeyLearn', desc: 'تحليل النصوص واستخراج البيانات باستخدام الذكاء.', tier: 'free',
+                    icon: 'fa-solid fa-monkey', tags: ['نصوص', 'استخراج'], url: 'https://monkeylearn.com/' },
+                { name: 'IBM Watson Analytics', desc: 'تحليل البيانات باستخدام الذكاء الاصطناعي من IBM.', tier: 'paid',
+                    icon: 'fa-brands fa-ibm', tags: ['IBM', 'تحليل'], url: 'https://www.ibm.com/watson-analytics' },
+                { name: 'DataRobot', desc: 'منصة تعلم آلي لتحليل البيانات وإنشاء النماذج.', tier: 'paid',
+                    icon: 'fa-solid fa-robot', tags: ['تعلم آلي', 'نماذج'], url: 'https://www.datarobot.com/' },
+                { name: 'Alteryx', desc: 'منصة تحليل بيانات وإعدادها للتعلم الآلي.', tier: 'paid',
+                    icon: 'fa-solid fa-arrows-spin', tags: ['تحليل', 'إعداد'], url: 'https://www.alteryx.com/' },
+                { name: 'RapidMiner', desc: 'منصة علم البيانات والتحليل التنبؤي.', tier: 'free',
+                    icon: 'fa-solid fa-rocket', tags: ['علم البيانات', 'تنبؤي'], url: 'https://rapidminer.com/' },
+                { name: 'KNIME', desc: 'منصة مفتوحة المصدر لتحليل البيانات والتكامل.', tier: 'free',
+                    icon: 'fa-solid fa-k', tags: ['مفتوحة', 'تكامل'], url: 'https://www.knime.com/' },
+                { name: 'H2O.ai', desc: 'منصة تعلم آلي مفتوحة المصدر.', tier: 'free', icon: 'fa-solid fa-h2o',
+                    tags: ['تعلم آلي', 'مفتوحة'], url: 'https://h2o.ai/' },
+                { name: 'BigML', desc: 'منصة تعلم آلي سحابية سهلة الاستخدام.', tier: 'free', icon: 'fa-solid fa-cloud',
+                    tags: ['سحابية', 'سهلة'], url: 'https://bigml.com/' }
+            ]
+        }, {
+            id: 'presentations',
+            name: 'العروض التقديمية',
+            icon: 'fa-solid fa-presentation-screen',
+            tools: [
+                { name: 'Gamma', desc: 'إنشاء عروض تقديمية احترافية بذكاء صناعي.', tier: 'free',
+                    icon: 'fa-solid fa-gamma', tags: ['عروض', 'ذكاء'], url: 'https://gamma.app/' },
+                { name: 'Decktopus', desc: 'توليد عروض تقديمية جاهزة من نص بسيط.', tier: 'free',
+                    icon: 'fa-solid fa-deck', tags: ['جاهزة', 'نص'], url: 'https://decktopus.com/' },
+                { name: 'Tome', desc: 'إنشاء عروض تفاعلية مع مساعد الذكاء الاصطناعي.', tier: 'free',
+                    icon: 'fa-solid fa-book', tags: ['تفاعلية', 'AI'], url: 'https://tome.app/' },
+                { name: 'Beautiful.ai', desc: 'عروض تقديمية ذكية تتنسق تلقائياً.', tier: 'free',
+                    icon: 'fa-solid fa-wand-magic', tags: ['ذكية', 'تنسيق'], url: 'https://www.beautiful.ai/' },
+                { name: 'Slidesgo', desc: 'قوالب عروض تقديمية احترافية مع ميزات ذكاء.', tier: 'free',
+                    icon: 'fa-solid fa-slideshare', tags: ['قوالب', 'احترافية'], url: 'https://slidesgo.com/' },
+                { name: 'Pitch', desc: 'منصة عروض تقديمية تعاونية مع ذكاء اصطناعي.', tier: 'free',
+                    icon: 'fa-solid fa-pitch', tags: ['تعاونية', 'ذكاء'], url: 'https://pitch.com/' },
+                { name: 'Zoho Show', desc: 'أداة عروض تقديمية مع ميزات ذكاء اصطناعي.', tier: 'free',
+                    icon: 'fa-solid fa-z', tags: ['ذكاء', 'عروض'], url: 'https://www.zoho.com/show/' }
+            ]
+        }, {
+            id: 'social-media',
+            name: 'إدارة وسائل التواصل',
+            icon: 'fa-solid fa-share-nodes',
+            tools: [
+                { name: 'Buffer', desc: 'جدولة وإدارة منشورات وسائل التواصل.', tier: 'free',
+                    icon: 'fa-solid fa-clock', tags: ['جدولة', 'إدارة'], url: 'https://buffer.com/' },
+                { name: 'Hootsuite', desc: 'منصة متكاملة لإدارة حسابات التواصل.', tier: 'paid',
+                    icon: 'fa-solid fa-bullhorn', tags: ['متكاملة', 'حسابات'], url: 'https://hootsuite.com/' },
+                { name: 'Later', desc: 'جدولة منشورات إنستغرام وتيك توك بسهولة.', tier: 'free',
+                    icon: 'fa-solid fa-calendar-plus', tags: ['إنستغرام', 'تيك توك'], url: 'https://later.com/' },
+                { name: 'Sprout Social', desc: 'تحليل وإدارة وسائل التواصل مع تقارير متقدمة.', tier: 'paid',
+                    icon: 'fa-solid fa-sprout', tags: ['تحليل', 'تقارير'], url: 'https://sproutsocial.com/' },
+                { name: 'HubSpot', desc: 'منصة تسويق شاملة مع أدوات تواصل اجتماعي.', tier: 'free',
+                    icon: 'fa-brands fa-hubspot', tags: ['تسويق', 'شاملة'], url: 'https://www.hubspot.com/' },
+                { name: 'Sendible', desc: 'إدارة وسائل التواصل مع تقارير وتحليلات.', tier: 'paid',
+                    icon: 'fa-solid fa-send', tags: ['إدارة', 'تحليلات'], url: 'https://www.sendible.com/' },
+                { name: 'Sprinklr', desc: 'منصة إدارة تجربة العملاء مع تواصل اجتماعي.', tier: 'paid',
+                    icon: 'fa-solid fa-sprinkler', tags: ['عملاء', 'تواصل'], url: 'https://www.sprinklr.com/' },
+                { name: 'Brandwatch', desc: 'تحليل سمعة العلامة التجارية على وسائل التواصل.', tier: 'paid',
+                    icon: 'fa-solid fa-brandwatch', tags: ['سمعة', 'تحليل'], url: 'https://www.brandwatch.com/' },
+                { name: 'Mention', desc: 'مراقبة الإشارات إلى علامتك التجارية.', tier: 'free',
+                    icon: 'fa-solid fa-at', tags: ['مراقبة', 'إشارات'], url: 'https://mention.com/' },
+                { name: 'Talkwalker', desc: 'تحليل وسائل التواصل والبيانات الضخمة.', tier: 'paid',
+                    icon: 'fa-solid fa-comments', tags: ['تحليل', 'بيانات'], url: 'https://www.talkwalker.com/' }
+            ]
+        }, {
+            id: 'email',
+            name: 'البريد الإلكتروني والتسويق',
+            icon: 'fa-solid fa-envelope',
+            tools: [
+                { name: 'Mailchimp', desc: 'أداة تسويق عبر البريد الإلكتروني الشهيرة.', tier: 'free',
+                    icon: 'fa-solid fa-mailchimp', tags: ['تسويق', 'شهيرة'], url: 'https://mailchimp.com/' },
+                { name: 'Sendinblue', desc: 'منصة تسويق متكاملة مع البريد الإلكتروني.', tier: 'free',
+                    icon: 'fa-solid fa-send', tags: ['متكاملة', 'بريد'], url: 'https://www.sendinblue.com/' },
+                { name: 'Constant Contact', desc: 'أداة تسويق بريدية سهلة للمبتدئين.', tier: 'paid',
+                    icon: 'fa-solid fa-address-card', tags: ['سهلة', 'مبتدئين'], url: 'https://www.constantcontact.com/' },
+                { name: 'Outreach', desc: 'أتمتة المبيعات والتواصل عبر البريد.', tier: 'paid', icon: 'fa-solid fa-handshake',
+                    tags: ['مبيعات', 'أتمتة'], url: 'https://www.outreach.io/' },
+                { name: 'Lemlist', desc: 'تخصيص حملات البريد الإلكتروني وإضافة صور وفيديوهات.', tier: 'paid',
+                    icon: 'fa-solid fa-list', tags: ['تخصيص', 'حملات'], url: 'https://www.lemlist.com/' },
+                { name: 'ActiveCampaign', desc: 'أتمتة التسويق والبريد الإلكتروني المتقدمة.', tier: 'paid',
+                    icon: 'fa-solid fa-bolt', tags: ['أتمتة', 'متقدمة'], url: 'https://www.activecampaign.com/' },
+                { name: 'Drip', desc: 'أتمتة التسويق للشركات الناشئة.', tier: 'paid', icon: 'fa-solid fa-droplet',
+                    tags: ['أتمتة', 'شركات'], url: 'https://www.drip.com/' },
+                { name: 'ConvertKit', desc: 'تسويق عبر البريد للكتاب والمدونين.', tier: 'free',
+                    icon: 'fa-solid fa-kit', tags: ['كتّاب', 'مدونين'], url: 'https://convertkit.com/' },
+                { name: 'MailerLite', desc: 'أداة تسويق بريدية بسيطة وفعالة.', tier: 'free', icon: 'fa-solid fa-envelope',
+                    tags: ['بسيطة', 'فعالة'], url: 'https://www.mailerlite.com/' },
+                { name: 'Campaign Monitor', desc: 'منصة تسويق بريدية للشركات.', tier: 'paid',
+                    icon: 'fa-solid fa-bullhorn', tags: ['شركات', 'بريدية'], url: 'https://www.campaignmonitor.com/' },
+                { name: 'Salesforce Marketing Cloud', desc: 'منصة تسويق شاملة من Salesforce.', tier: 'paid',
+                    icon: 'fa-brands fa-salesforce', tags: ['شاملة', 'Salesforce'], url: 'https://www.salesforce.com/marketing-cloud/' },
+                { name: 'Adobe Campaign', desc: 'أتمتة التسويق وحملات البريد الإلكتروني.', tier: 'paid',
+                    icon: 'fa-brands fa-adobe', tags: ['أتمتة', 'حملات'], url: 'https://business.adobe.com/products/campaign.html' }
+            ]
+        }, {
+            id: 'ecommerce',
+            name: 'التجارة الإلكترونية',
+            icon: 'fa-solid fa-cart-shopping',
+            tools: [
+                { name: 'Shopify Magic', desc: 'مساعد الذكاء الاصطناعي لمنصة Shopify.', tier: 'paid',
+                    icon: 'fa-brands fa-shopify', tags: ['Shopify', 'مساعد'], url: 'https://www.shopify.com/' },
+                { name: 'Klaviyo', desc: 'تسويق عبر البريد بناءً على سلوك العملاء.', tier: 'paid',
+                    icon: 'fa-solid fa-klaviyo', tags: ['تسويق', 'سلوك'], url: 'https://www.klaviyo.com/' },
+                { name: 'Omnisend', desc: 'أتمتة التسويق لمتاجر التجارة الإلكترونية.', tier: 'free',
+                    icon: 'fa-solid fa-om', tags: ['أتمتة', 'متاجر'], url: 'https://www.omnisend.com/' },
+                { name: 'ReConvert', desc: 'زيادة المبيعات عبر عروض ما بعد الشراء.', tier: 'paid',
+                    icon: 'fa-solid fa-rotate-left', tags: ['مبيعات', 'عروض'], url: 'https://www.reconvert.io/' },
+                { name: 'Gorgias', desc: 'إدارة دعم العملاء في المتاجر الإلكترونية.', tier: 'paid',
+                    icon: 'fa-solid fa-headset', tags: ['دعم', 'عملاء'], url: 'https://www.gorgias.com/' },
+                { name: 'Nosto', desc: 'تخصيص تجربة العميل في المتاجر الإلكترونية.', tier: 'paid',
+                    icon: 'fa-solid fa-user', tags: ['تخصيص', 'عملاء'], url: 'https://www.nosto.com/' },
+                { name: 'Yotpo', desc: 'إدارة المراجعات والولاء في المتاجر.', tier: 'paid', icon: 'fa-solid fa-star',
+                    tags: ['مراجعات', 'ولاء'], url: 'https://www.yotpo.com/' },
+                { name: 'Okendo', desc: 'جمع وعرض مراجعات العملاء.', tier: 'paid', icon: 'fa-solid fa-star-half-stroke',
+                    tags: ['مراجعات', 'عملاء'], url: 'https://okendo.io/' },
+                { name: 'Privy', desc: 'بناء قائمة بريدية وعروض الخروج.', tier: 'free', icon: 'fa-solid fa-envelope',
+                    tags: ['بريدية', 'عروض'], url: 'https://privy.com/' },
+                { name: 'Justuno', desc: 'عروض مخصصة لزيادة التحويلات.', tier: 'paid', icon: 'fa-solid fa-justify',
+                    tags: ['مخصصة', 'تحويلات'], url: 'https://www.justuno.com/' }
+            ]
+        }, {
+            id: 'hr',
+            name: 'الموارد البشرية والتوظيف',
+            icon: 'fa-solid fa-users-gear',
+            tools: [
+                { name: 'HireVue', desc: 'مقابلات فيديو مدعومة بالذكاء لتحليل المرشحين.', tier: 'paid',
+                    icon: 'fa-solid fa-video', tags: ['مقابلات', 'تحليل'], url: 'https://www.hirevue.com/' },
+                { name: 'Eightfold', desc: 'منصة توظيف تعتمد على الذكاء لتحديد المواهب.', tier: 'paid',
+                    icon: 'fa-solid fa-user-plus', tags: ['توظيف', 'مواهب'], url: 'https://eightfold.ai/' },
+                { name: 'Indeed Hiring Platform', desc: 'أتمتة عمليات التوظيف عبر منصة Indeed.', tier: 'paid',
+                    icon: 'fa-brands fa-indeed', tags: ['أتمتة', 'Indeed'], url: 'https://www.indeed.com/' },
+                { name: 'Workday', desc: 'نظام متكامل للموارد البشرية والمالية.', tier: 'paid',
+                    icon: 'fa-solid fa-building', tags: ['متكامل', 'مالية'], url: 'https://www.workday.com/' },
+                { name: 'Pymetrics', desc: 'تقييم المرشحين عبر ألعاب مدعومة بالذكاء.', tier: 'paid',
+                    icon: 'fa-solid fa-gamepad', tags: ['تقييم', 'ألعاب'], url: 'https://www.pymetrics.com/' },
+                { name: 'LinkedIn Hiring', desc: 'أدوات توظيف مدعومة بالذكاء من LinkedIn.', tier: 'paid',
+                    icon: 'fa-brands fa-linkedin', tags: ['توظيف', 'LinkedIn'], url: 'https://business.linkedin.com/talent-solutions' },
+                { name: 'Glassdoor', desc: 'تقييمات الشركات ومراجعات التوظيف.', tier: 'free', icon: 'fa-solid fa-glass',
+                    tags: ['تقييمات', 'شركات'], url: 'https://www.glassdoor.com/' },
+                { name: 'ZipRecruiter', desc: 'منصة توظيف سريعة مع ذكاء اصطناعي.', tier: 'paid',
+                    icon: 'fa-solid fa-z', tags: ['سريعة', 'ذكاء'], url: 'https://www.ziprecruiter.com/' }
+            ]
+        }, {
+            id: 'legal',
+            name: 'القانون والامتثال',
+            icon: 'fa-solid fa-scale-balanced',
+            tools: [
+                { name: 'DoNotPay', desc: 'روبوت قانوني للمساعدة في القضايا البسيطة.', tier: 'paid',
+                    icon: 'fa-solid fa-robot', tags: ['روبوت', 'قضايا'], url: 'https://donotpay.com/' },
+                { name: 'Latch', desc: 'أتمتة العقود والمراجعة القانونية الذكية.', tier: 'paid',
+                    icon: 'fa-solid fa-lock', tags: ['عقود', 'مراجعة'], url: 'https://www.latch.com/' },
+                { name: 'LegalRobot', desc: 'تحليل العقود والوثائق القانونية.', tier: 'paid', icon: 'fa-solid fa-gavel',
+                    tags: ['عقود', 'تحليل'], url: 'https://legalrobot.com/' },
+                { name: 'LawGeex', desc: 'مراجعة العقود تلقائياً ومقارنتها بسياساتك.', tier: 'paid',
+                    icon: 'fa-solid fa-check-double', tags: ['عقود', 'سياسات'], url: 'https://www.lawgeex.com/' },
+                { name: 'Clause', desc: 'إدارة العقود الذكية باستخدام الذكاء الاصطناعي.', tier: 'paid',
+                    icon: 'fa-solid fa-file-signature', tags: ['عقود', 'ذكية'], url: 'https://clause.io/' },
+                { name: 'eBrevia', desc: 'تحليل الوثائق القانونية واستخراج البيانات.', tier: 'paid',
+                    icon: 'fa-solid fa-file', tags: ['وثائق', 'استخراج'], url: 'https://www.ebrevia.com/' },
+                { name: 'Reynen Court', desc: 'منصة للذكاء الاصطناعي في الخدمات القانونية.', tier: 'paid',
+                    icon: 'fa-solid fa-court', tags: ['خدمات', 'قانونية'], url: 'https://www.reynencourt.com/' }
+            ]
+        }, {
+            id: 'finance',
+            name: 'المالية والاستثمار',
+            icon: 'fa-solid fa-coins',
+            tools: [
+                { name: 'Numerai', desc: 'منصة استثمار جماعية تعتمد على نماذج الذكاء.', tier: 'paid',
+                    icon: 'fa-solid fa-chart-line', tags: ['استثمار', 'نماذج'], url: 'https://numer.ai/' },
+                { name: 'Kavout', desc: 'تحليل الأسهم والاستثمار باستخدام التعلم الآلي.', tier: 'paid',
+                    icon: 'fa-solid fa-arrow-trend-up', tags: ['أسهم', 'تعلم آلي'], url: 'https://www.kavout.com/' },
+                { name: 'ZestFinance', desc: 'تقييم الجدارة الائتمانية باستخدام الذكاء.', tier: 'paid',
+                    icon: 'fa-solid fa-credit-card', tags: ['ائتمان', 'تقييم'], url: 'https://www.zest.ai/' },
+                { name: 'CreditVidya', desc: 'تحليل البيانات البديلة لتقييم المخاطر المالية.', tier: 'paid',
+                    icon: 'fa-solid fa-shield', tags: ['مخاطر', 'بيانات'], url: 'https://creditvidya.com/' },
+                { name: 'QuantConnect', desc: 'منصة لتطوير واختبار خوارزميات التداول.', tier: 'free',
+                    icon: 'fa-solid fa-calculator', tags: ['تداول', 'خوارزميات'], url: 'https://www.quantconnect.com/' },
+                { name: 'Alpaca', desc: 'تداول الأسهم عبر واجهات برمجة التطبيقات.', tier: 'free',
+                    icon: 'fa-solid fa-arrow-right', tags: ['تداول', 'API'], url: 'https://alpaca.markets/' },
+                { name: 'Robinhood', desc: 'منصة تداول سهلة مع ميزات ذكاء.', tier: 'free', icon: 'fa-solid fa-robot',
+                    tags: ['تداول', 'سهلة'], url: 'https://robinhood.com/' },
+                { name: 'Betterment', desc: 'استثمار آلي وإدارة المحافظ.', tier: 'paid', icon: 'fa-solid fa-hand-holding-dollar',
+                    tags: ['استثمار', 'آلي'], url: 'https://www.betterment.com/' }
+            ]
+        }, {
+            id: 'health',
+            name: 'الصحة والعافية',
+            icon: 'fa-solid fa-heart-pulse',
+            tools: [
+                { name: 'IBM Watson Health', desc: 'تحليل البيانات الصحية باستخدام الذكاء الاصطناعي.', tier: 'paid',
+                    icon: 'fa-brands fa-ibm', tags: ['بيانات', 'صحية'], url: 'https://www.ibm.com/watson-health' },
+                { name: 'Ada', desc: 'تقييم الأعراض وتقديم نصائح صحية أولية.', tier: 'free',
+                    icon: 'fa-solid fa-stethoscope', tags: ['أعراض', 'نصائح'], url: 'https://ada.com/' },
+                { name: 'Babylon', desc: 'استشارات طبية عن بُعد مدعومة بالذكاء.', tier: 'paid',
+                    icon: 'fa-solid fa-comment-medical', tags: ['استشارات', 'عن بُعد'], url: 'https://www.babylonhealth.com/' },
+                { name: 'Medscape', desc: 'موسوعة طبية مع أدوات تشخيص مساعدة.', tier: 'free',
+                    icon: 'fa-solid fa-book-medical', tags: ['موسوعة', 'تشخيص'], url: 'https://www.medscape.com/' },
+                { name: 'K Health', desc: 'استشارات طبية عن بُعد بتقييم الأعراض.', tier: 'free',
+                    icon: 'fa-solid fa-k', tags: ['استشارات', 'أعراض'], url: 'https://www.khealth.com/' },
+                { name: 'Your.MD', desc: 'مساعد صحي شخصي يستخدم الذكاء الاصطناعي.', tier: 'free',
+                    icon: 'fa-solid fa-user-md', tags: ['شخصي', 'ذكاء'], url: 'https://www.your.md/' },
+                { name: 'Florence', desc: 'مساعد صحي لإدارة الأدوية والمواعيد.', tier: 'free',
+                    icon: 'fa-solid fa-pills', tags: ['أدوية', 'مواعيد'], url: 'https://florence.chat/' },
+                { name: 'Sensely', desc: 'أفاتار صحي لتقديم النصائح الطبية.', tier: 'paid', icon: 'fa-solid fa-avatar',
+                    tags: ['أفاتار', 'نصائح'], url: 'https://www.sensely.com/' }
+            ]
+        }, {
+            id: 'entertainment',
+            name: 'الترفيه والإبداع',
+            icon: 'fa-solid fa-masks-theater',
+            tools: [
+                { name: 'AIVA', desc: 'تأليف موسيقي باستخدام الذكاء الاصطناعي.', tier: 'free',
+                    icon: 'fa-solid fa-music', tags: ['موسيقى', 'تأليف'], url: 'https://www.aiva.ai/' },
+                { name: 'Boomy', desc: 'إنشاء أغاني وموسيقى أصلية في ثوانٍ.', tier: 'free',
+                    icon: 'fa-solid fa-headphones', tags: ['أغاني', 'أصلية'], url: 'https://boomy.com/' },
+                { name: 'Jukebox', desc: 'نموذج OpenAI لتوليد موسيقى بأنماط متعددة.', tier: 'free',
+                    icon: 'fa-brands fa-openai', tags: ['موسيقى', 'أنماط'], url: 'https://openai.com/research/jukebox' },
+                { name: 'Runway (إبداع)', desc: 'أدوات إبداعية لتوليد الفيديو والصور.', tier: 'free',
+                    icon: 'fa-solid fa-wand-magic-sparkles', tags: ['فيديو', 'صور'], url: 'https://runwayml.com/' },
+                { name: 'Amper Music', desc: 'تأليف موسيقي مخصص للمشاريع الإبداعية.', tier: 'paid',
+                    icon: 'fa-solid fa-music', tags: ['موسيقى', 'مخصص'], url: 'https://ampermusic.com/' },
+                { name: 'Soundraw', desc: 'توليد موسيقى خالية من حقوق النشر.', tier: 'free', icon: 'fa-solid fa-headphones',
+                    tags: ['موسيقى', 'خالية'], url: 'https://soundraw.io/' },
+                { name: 'Mubert', desc: 'موسيقى خلفية ذكية للمحتوى.', tier: 'free', icon: 'fa-solid fa-music',
+                    tags: ['خلفية', 'ذكية'], url: 'https://mubert.com/' },
+                { name: 'Ecrett Music', desc: 'توليد موسيقى لمقاطع الفيديو.', tier: 'free', icon: 'fa-solid fa-film',
+                    tags: ['موسيقى', 'فيديو'], url: 'https://ecrettmusic.com/' }
+            ]
+        }, {
+            id: 'code',
+            name: 'أدوات الكود والبرمجة',
+            icon: 'fa-solid fa-code',
+            tools: [
+                { name: 'GitHub Copilot', desc: 'مساعد برمجة بتقنية OpenAI يكتب الأكواد.', tier: 'paid',
+                    icon: 'fa-brands fa-github', tags: ['برمجة', 'AI'], url: 'https://github.com/features/copilot' },
+                { name: 'Tabnine', desc: 'إكمال ذكي للأكواد يدعم جميع اللغات.', tier: 'free', icon: 'fa-solid fa-bolt',
+                    tags: ['إكمال', 'لغات'], url: 'https://www.tabnine.com/' },
+                { name: 'Codeium', desc: 'مساعد برمجة مجاني بالكامل لأكثر من 70 لغة.', tier: 'free',
+                    icon: 'fa-solid fa-cube', tags: ['مجاني', 'قوي'], url: 'https://codeium.com/' },
+                { name: 'Amazon CodeWhisperer', desc: 'مساعد برمجة من AWS للسحابة.', tier: 'free',
+                    icon: 'fa-brands fa-aws', tags: ['سحابة', 'AWS'], url: 'https://aws.amazon.com/codewhisperer/' },
+                { name: 'Cursor', desc: 'محرر كود ذكي مع وضع التخمين والتكامل.', tier: 'free',
+                    icon: 'fa-solid fa-cursor', tags: ['محرر', 'ذكي'], url: 'https://cursor.sh/' },
+                { name: 'Replit AI', desc: 'بيئة تطوير سحابية مع مساعد AI مدمج.', tier: 'free', icon: 'fa-solid fa-cloud',
+                    tags: ['سحابة', 'متصفح'], url: 'https://replit.com/' },
+                { name: 'Sourcery', desc: 'إعادة هيكلة وتحسين جودة الأكواد تلقائياً.', tier: 'paid',
+                    icon: 'fa-solid fa-wand-magic-sparkles', tags: ['تحسين', 'جودة'], url: 'https://sourcery.ai/' },
+                { name: 'Mintlify', desc: 'كتابة وثائق الأكواد بلغة طبيعية.', tier: 'free',
+                    icon: 'fa-solid fa-file-lines', tags: ['توثيق', 'طبيعي'], url: 'https://mintlify.com/' },
+                { name: 'Cody', desc: 'مساعد برمجة من Sourcegraph.', tier: 'free', icon: 'fa-solid fa-code',
+                    tags: ['برمجة', 'Sourcegraph'], url: 'https://sourcegraph.com/cody' },
+                { name: 'CodeWhisperer (AWS)', desc: 'مساعد برمجة سحابي من AWS.', tier: 'free', icon: 'fa-brands fa-aws',
+                    tags: ['سحابي', 'AWS'], url: 'https://aws.amazon.com/codewhisperer/' },
+                { name: 'BlackBox AI', desc: 'مساعد برمجة لاستخراج الأكواد من الأوامر.', tier: 'free',
+                    icon: 'fa-solid fa-box', tags: ['استخراج', 'أوامر'], url: 'https://www.blackbox.ai/' },
+                { name: 'Mutable AI', desc: 'تحويل الأكواد إلى لغة طبيعية والعكس.', tier: 'free',
+                    icon: 'fa-solid fa-arrows-rotate', tags: ['تحويل', 'طبيعي'], url: 'https://mutable.ai/' }
+            ]
+        }, {
+            id: 'image',
+            name: 'توليد الصور',
+            icon: 'fa-solid fa-image',
+            tools: [
+                { name: 'Midjourney', desc: 'أشهر أداة لتوليد الصور الفنية بدقة استثنائية.', tier: 'paid',
+                    icon: 'fa-solid fa-paintbrush', tags: ['فني', 'دقة'], url: 'https://www.midjourney.com/' },
+                { name: 'DALL·E 3', desc: 'نموذج OpenAI لتوليد الصور الواقعية من النصوص.', tier: 'paid',
+                    icon: 'fa-solid fa-image', tags: ['واقعي', 'OpenAI'], url: 'https://openai.com/dall-e-3' },
+                { name: 'Stable Diffusion', desc: 'نموذج مفتوح المصدر مع تحكم كامل بالصور.', tier: 'free',
+                    icon: 'fa-solid fa-cubes', tags: ['مفتوح', 'تخصيص'], url: 'https://stability.ai/' },
+                { name: 'Leonardo.ai', desc: 'منصة توليد صور احترافية بدقة عالية.', tier: 'free',
+                    icon: 'fa-solid fa-dragon', tags: ['احترافي', 'مجاني'], url: 'https://leonardo.ai/' },
+                { name: 'Adobe Firefly', desc: 'أدوات توليد وتحرير الصور من Adobe.', tier: 'paid',
+                    icon: 'fa-brands fa-adobe', tags: ['Adobe', 'تحرير'], url: 'https://www.adobe.com/products/firefly.html' },
+                { name: 'Playground AI', desc: 'توليد وتعديل الصور بواجهة سهلة.', tier: 'free',
+                    icon: 'fa-solid fa-palette', tags: ['سهل', 'تعديل'], url: 'https://playgroundai.com/' },
+                { name: 'DeepAI', desc: 'أدوات متنوعة لتوليد وتعديل الصور.', tier: 'free', icon: 'fa-solid fa-robot',
+                    tags: ['متنوع', 'بسيط'], url: 'https://deepai.org/' },
+                { name: 'Artbreeder', desc: 'توليد صور فنية بتقنية الاندماج الجيني.', tier: 'free',
+                    icon: 'fa-solid fa-mask', tags: ['فني', 'إبداعي'], url: 'https://www.artbreeder.com/' },
+                { name: 'Craiyon', desc: 'توليد صور سريعة من النصوص.', tier: 'free', icon: 'fa-solid fa-crayon',
+                    tags: ['سريعة', 'نصوص'], url: 'https://www.craiyon.com/' },
+                { name: 'Bing Image Creator', desc: 'مولد الصور من مايكروسوفت باستخدام DALL·E.', tier: 'free',
+                    icon: 'fa-brands fa-microsoft', tags: ['مولد', 'DALL·E'], url: 'https://www.bing.com/create' },
+                { name: 'NightCafe', desc: 'توليد صور فنية بأساليب متعددة.', tier: 'free', icon: 'fa-solid fa-moon',
+                    tags: ['فنية', 'أساليب'], url: 'https://nightcafe.studio/' },
+                { name: 'DreamStudio', desc: 'واجهة رسومية لنماذج Stable Diffusion.', tier: 'paid',
+                    icon: 'fa-solid fa-dream', tags: ['واجهة', 'Stable Diffusion'], url: 'https://dreamstudio.ai/' },
+                { name: 'Stablecog', desc: 'توليد صور بنماذج مفتوحة المصدر.', tier: 'free', icon: 'fa-solid fa-cog',
+                    tags: ['مفتوحة', 'مصدر'], url: 'https://stablecog.com/' },
+                { name: 'DeepArt', desc: 'تحويل الصور إلى أعمال فنية.', tier: 'free', icon: 'fa-solid fa-palette',
+                    tags: ['فنية', 'تحويل'], url: 'https://deepart.io/' },
+                { name: 'Prisma', desc: 'تطبيق لتحويل الصور إلى لوحات فنية.', tier: 'free', icon: 'fa-solid fa-camera',
+                    tags: ['لوحات', 'فنية'], url: 'https://prisma-ai.com/' }
+            ]
+        }, {
+            id: 'video',
+            name: 'توليد الفيديو',
+            icon: 'fa-solid fa-video',
+            tools: [
+                { name: 'Runway Gen-2', desc: 'توليد فيديوهات احترافية من النصوص والصور.', tier: 'paid',
+                    icon: 'fa-solid fa-film', tags: ['توليد', 'نص إلى فيديو'], url: 'https://runwayml.com/' },
+                { name: 'Pika Labs', desc: 'توليد فيديوهات قصيرة إبداعية بسهولة.', tier: 'free',
+                    icon: 'fa-solid fa-play', tags: ['قصير', 'إبداعي'], url: 'https://pika.art/' },
+                { name: 'Synthesia', desc: 'فيديوهات بأفاتار رقمي متحدث بلغات متعددة.', tier: 'paid',
+                    icon: 'fa-solid fa-user-tie', tags: ['أفاتار', 'لغات'], url: 'https://www.synthesia.io/' },
+                { name: 'HeyGen', desc: 'توليد فيديوهات بأفاتار ومترجم فوري.', tier: 'free',
+                    icon: 'fa-solid fa-microphone', tags: ['أفاتار', 'ترجمة'], url: 'https://www.heygen.com/' },
+                { name: 'Fliki', desc: 'تحويل النصوص إلى فيديوهات مع صوت وصور.', tier: 'free',
+                    icon: 'fa-solid fa-volume-high', tags: ['نص إلى فيديو', 'صوت'], url: 'https://fliki.ai/' },
+                { name: 'Pictory', desc: 'استخراج فيديوهات قصيرة من محتوى طويل.', tier: 'paid',
+                    icon: 'fa-solid fa-scissors', tags: ['تقطيع', 'توليد'], url: 'https://pictory.ai/' },
+                { name: 'Elai.io', desc: 'توليد فيديوهات بأفاتار من النصوص.', tier: 'paid', icon: 'fa-solid fa-user',
+                    tags: ['أفاتار', 'نصوص'], url: 'https://elai.io/' },
+                { name: 'Colossyan', desc: 'توليد فيديوهات تعليمية بأفاتار.', tier: 'paid', icon: 'fa-solid fa-graduation-cap',
+                    tags: ['تعليمية', 'أفاتار'], url: 'https://www.colossyan.com/' },
+                { name: 'Rephrase.ai', desc: 'توليد فيديوهات بأفاتار شخصي.', tier: 'paid', icon: 'fa-solid fa-user',
+                    tags: ['شخصي', 'أفاتار'], url: 'https://www.rephrase.ai/' },
+                { name: 'Veed.io', desc: 'تحرير فيديو سهل مع ميزات ذكاء.', tier: 'free', icon: 'fa-solid fa-video',
+                    tags: ['تحرير', 'سهل'], url: 'https://www.veed.io/' },
+                { name: 'Kapwing', desc: 'تحرير فيديو وصور في المتصفح.', tier: 'free', icon: 'fa-solid fa-scissors',
+                    tags: ['تحرير', 'متصفح'], url: 'https://www.kapwing.com/' },
+                { name: 'Clipchamp', desc: 'تحرير فيديو احترافي من مايكروسوفت.', tier: 'free',
+                    icon: 'fa-brands fa-microsoft', tags: ['تحرير', 'مايكروسوفت'], url: 'https://clipchamp.com/' },
+                { name: 'WeVideo', desc: 'تحرير فيديو سحابي متقدم.', tier: 'paid', icon: 'fa-solid fa-cloud',
+                    tags: ['سحابي', 'متقدم'], url: 'https://www.wevideo.com/' },
+                { name: 'Biteable', desc: 'إنشاء فيديوهات تسويقية سريعة.', tier: 'free', icon: 'fa-solid fa-b',
+                    tags: ['تسويقية', 'سريعة'], url: 'https://biteable.com/' },
+                { name: 'Animoto', desc: 'إنشاء فيديوهات احترافية من قوالب.', tier: 'free', icon: 'fa-solid fa-film',
+                    tags: ['قوالب', 'احترافية'], url: 'https://animoto.com/' },
+                { name: 'Wave.video', desc: 'إنشاء فيديوهات وبث مباشر.', tier: 'free', icon: 'fa-solid fa-wave-square',
+                    tags: ['بث', 'مباشر'], url: 'https://wave.video/' },
+                { name: 'InVideo', desc: 'إنشاء فيديوهات احترافية بسرعة.', tier: 'free', icon: 'fa-solid fa-video',
+                    tags: ['احترافية', 'سرعة'], url: 'https://invideo.io/' },
+                { name: 'Lumen5', desc: 'تحويل المقالات إلى فيديوهات.', tier: 'free', icon: 'fa-solid fa-file',
+                    tags: ['مقالات', 'فيديو'], url: 'https://lumen5.com/' }
+            ]
+        }, {
+            id: 'automation',
+            name: 'الأتمتة والربط',
+            icon: 'fa-solid fa-robot',
+            tools: [
+                { name: 'Zapier', desc: 'ربط التطبيقات وإنشاء أتمتة بدون برمجة.', tier: 'free', icon: 'fa-solid fa-zap',
+                    tags: ['ربط', 'أتمتة'], url: 'https://zapier.com/' },
+                { name: 'Make (Integromat)', desc: 'أتمتة متقدمة بين التطبيقات بسهولة.', tier: 'free',
+                    icon: 'fa-solid fa-gears', tags: ['أتمتة', 'متقدمة'], url: 'https://www.make.com/' },
+                { name: 'IFTTT', desc: 'سلاسل أتمتة بسيطة بين خدماتك.', tier: 'free',
+                    icon: 'fa-solid fa-arrow-right-arrow-left', tags: ['بسيطة', 'خدمات'], url: 'https://ifttt.com/' },
+                { name: 'n8n', desc: 'أتمتة مفتوحة المصدر قابلة للتخصيص.', tier: 'free', icon: 'fa-solid fa-code',
+                    tags: ['مفتوحة', 'تخصيص'], url: 'https://n8n.io/' },
+                { name: 'Pipedream', desc: 'أتمتة سحابية للمطورين.', tier: 'free', icon: 'fa-solid fa-cloud',
+                    tags: ['سحابية', 'مطورين'], url: 'https://pipedream.com/' },
+                { name: 'Workato', desc: 'أتمتة للشركات مع تكاملات واسعة.', tier: 'paid', icon: 'fa-solid fa-building',
+                    tags: ['شركات', 'تكاملات'], url: 'https://www.workato.com/' },
+                { name: 'Tray.io', desc: 'منصة أتمتة مرنة للمؤسسات.', tier: 'paid', icon: 'fa-solid fa-tray',
+                    tags: ['مرنة', 'مؤسسات'], url: 'https://tray.io/' },
+                { name: 'Automate.io', desc: 'أتمتة تطبيقات الأعمال بسهولة.', tier: 'free', icon: 'fa-solid fa-robot',
+                    tags: ['أعمال', 'سهولة'], url: 'https://automate.io/' },
+                { name: 'Power Automate', desc: 'أتمتة من مايكروسوفت للمستخدمين.', tier: 'free',
+                    icon: 'fa-brands fa-microsoft', tags: ['مايكروسوفت', 'أتمتة'], url: 'https://powerautomate.microsoft.com/' },
+                { name: 'UiPath', desc: 'أتمتة العمليات الروبوتية للشركات.', tier: 'paid', icon: 'fa-solid fa-robot',
+                    tags: ['روبوتية', 'شركات'], url: 'https://www.uipath.com/' }
+            ]
+        }, {
+            id: 'analytics',
+            name: 'التحليلات',
+            icon: 'fa-solid fa-chart-bar',
+            tools: [
+                { name: 'Google Analytics', desc: 'تحليلات المواقع الأشهر في العالم.', tier: 'free',
+                    icon: 'fa-brands fa-google', tags: ['مواقع', 'شهيرة'], url: 'https://analytics.google.com/' },
+                { name: 'Mixpanel', desc: 'تحليلات تفاعل المستخدمين مع المنتجات.', tier: 'free',
+                    icon: 'fa-solid fa-mix', tags: ['تفاعل', 'منتجات'], url: 'https://mixpanel.com/' },
+                { name: 'Amplitude', desc: 'تحليلات المنتج لفهم سلوك المستخدم.', tier: 'free',
+                    icon: 'fa-solid fa-wave', tags: ['منتج', 'سلوك'], url: 'https://amplitude.com/' },
+                { name: 'Heap', desc: 'تحليلات تلقائية لتفاعلات المستخدم.', tier: 'free', icon: 'fa-solid fa-heap',
+                    tags: ['تلقائية', 'تفاعلات'], url: 'https://heap.io/' },
+                { name: 'Hotjar', desc: 'خرائط حرارة وتسجيلات زوار.', tier: 'free', icon: 'fa-solid fa-fire',
+                    tags: ['حرارة', 'تسجيلات'], url: 'https://www.hotjar.com/' },
+                { name: 'Crazy Egg', desc: 'خرائط حرارة وتحليلات سلوك الزوار.', tier: 'paid', icon: 'fa-solid fa-egg',
+                    tags: ['حرارة', 'سلوك'], url: 'https://www.crazyegg.com/' },
+                { name: 'FullStory', desc: 'تسجيل جلسات المستخدم وتحليل السلوك.', tier: 'paid',
+                    icon: 'fa-solid fa-story', tags: ['تسجيل', 'سلوك'], url: 'https://www.fullstory.com/' },
+                { name: 'Piwik (Matomo)', desc: 'تحليلات مفتوحة المصدر تحافظ على خصوصية البيانات.', tier: 'free',
+                    icon: 'fa-solid fa-lock', tags: ['مفتوحة', 'خصوصية'], url: 'https://matomo.org/' },
+                { name: 'Clicky', desc: 'تحليلات فورية لحركة زوار الموقع.', tier: 'free', icon: 'fa-solid fa-clock',
+                    tags: ['فورية', 'زوار'], url: 'https://clicky.com/' },
+                { name: 'Woopra', desc: 'تحليلات شاملة لرحلة العميل.', tier: 'paid', icon: 'fa-solid fa-woopra',
+                    tags: ['رحلة', 'عميل'], url: 'https://www.woopra.com/' }
+            ]
+        }, {
+            id: 'education',
+            name: 'التعليم الإلكتروني',
+            icon: 'fa-solid fa-graduation-cap',
+            tools: [
+                { name: 'Khanmigo', desc: 'مساعد تعليمي من خان أكاديمي مدعوم بالذكاء.', tier: 'free',
+                    icon: 'fa-solid fa-chalkboard-user', tags: ['تعليمي', 'خان'], url: 'https://www.khanacademy.org/khanmigo' },
+                { name: 'Duolingo', desc: 'تعلم اللغات عبر تمارين تفاعلية مدعومة بالذكاء.', tier: 'free',
+                    icon: 'fa-solid fa-dove', tags: ['لغات', 'تفاعلي'], url: 'https://www.duolingo.com/' },
+                { name: 'Quizlet', desc: 'بطاقات تعليمية ذكية لمساعدة الطلاب على الدراسة.', tier: 'free',
+                    icon: 'fa-solid fa-cards', tags: ['دراسة', 'بطاقات'], url: 'https://quizlet.com/' },
+                { name: 'Socratic', desc: 'مساعد لحل الواجبات بالتصوير والبحث الذكي.', tier: 'free',
+                    icon: 'fa-solid fa-mobile-screen', tags: ['واجبات', 'تصوير'], url: 'https://socratic.org/' },
+                { name: 'Photomath', desc: 'حل مسائل الرياضيات بالتصوير شرحاً خطوة بخطوة.', tier: 'free',
+                    icon: 'fa-solid fa-calculator', tags: ['رياضيات', 'خطوة'], url: 'https://photomath.com/' },
+                { name: 'Coursera AI', desc: 'دورات تدريبية مدعومة بالذكاء من جامعات عالمية.', tier: 'free',
+                    icon: 'fa-solid fa-c', tags: ['دورات', 'جامعات'], url: 'https://www.coursera.org/' },
+                { name: 'edX AI', desc: 'منصة تعليمية مفتوحة مع دورات ذكاء اصطناعي.', tier: 'free',
+                    icon: 'fa-solid fa-edx', tags: ['مفتوحة', 'ذكاء'], url: 'https://www.edx.org/' },
+                { name: 'Brilliant', desc: 'تعلم الرياضيات والعلوم من خلال حل المشكلات.', tier: 'paid',
+                    icon: 'fa-solid fa-lightbulb', tags: ['رياضيات', 'علوم'], url: 'https://brilliant.org/' },
+                { name: 'Khan Academy', desc: 'منصة تعليمية مجانية مع دروس فيديو.', tier: 'free',
+                    icon: 'fa-solid fa-graduation-cap', tags: ['مجانية', 'فيديو'], url: 'https://www.khanacademy.org/' },
+                { name: 'Udemy AI', desc: 'دورات تدريبية في الذكاء الاصطناعي.', tier: 'paid', icon: 'fa-solid fa-u',
+                    tags: ['دورات', 'ذكاء'], url: 'https://www.udemy.com/' }
+            ]
+        }, {
+            id: 'marketing',
+            name: 'التسويق الرقمي',
+            icon: 'fa-solid fa-bullhorn',
+            tools: [
+                { name: 'HubSpot Marketing', desc: 'منصة تسويق شاملة مع أدوات ذكاء.', tier: 'free',
+                    icon: 'fa-brands fa-hubspot', tags: ['شاملة', 'ذكاء'], url: 'https://www.hubspot.com/' },
+                { name: 'Marketo', desc: 'أتمتة التسويق للشركات من Adobe.', tier: 'paid', icon: 'fa-brands fa-adobe',
+                    tags: ['أتمتة', 'شركات'], url: 'https://www.marketo.com/' },
+                { name: 'ActiveCampaign', desc: 'أتمتة التسويق والبريد الإلكتروني.', tier: 'paid',
+                    icon: 'fa-solid fa-bolt', tags: ['أتمتة', 'بريد'], url: 'https://www.activecampaign.com/' },
+                { name: 'Drip', desc: 'أتمتة التسويق للشركات الناشئة.', tier: 'paid', icon: 'fa-solid fa-droplet',
+                    tags: ['أتمتة', 'شركات'], url: 'https://www.drip.com/' },
+                { name: 'ConvertKit', desc: 'تسويق للكتّاب والمبدعين.', tier: 'free', icon: 'fa-solid fa-kit',
+                    tags: ['كتّاب', 'مبدعين'], url: 'https://convertkit.com/' },
+                { name: 'MailerLite', desc: 'أداة تسويق بريدية بسيطة وفعالة.', tier: 'free', icon: 'fa-solid fa-envelope',
+                    tags: ['بسيطة', 'فعالة'], url: 'https://www.mailerlite.com/' },
+                { name: 'Campaign Monitor', desc: 'منصة تسويق بريدية للشركات.', tier: 'paid',
+                    icon: 'fa-solid fa-bullhorn', tags: ['شركات', 'بريدية'], url: 'https://www.campaignmonitor.com/' },
+                { name: 'Salesforce Marketing Cloud', desc: 'منصة تسويق شاملة من Salesforce.', tier: 'paid',
+                    icon: 'fa-brands fa-salesforce', tags: ['شاملة', 'Salesforce'], url: 'https://www.salesforce.com/marketing-cloud/' },
+                { name: 'Adobe Campaign', desc: 'أتمتة التسويق وحملات البريد الإلكتروني.', tier: 'paid',
+                    icon: 'fa-brands fa-adobe', tags: ['أتمتة', 'حملات'], url: 'https://business.adobe.com/products/campaign.html' },
+                { name: 'SendGrid', desc: 'خدمة بريد إلكتروني للتسويق.', tier: 'free', icon: 'fa-solid fa-envelope',
+                    tags: ['بريد', 'تسويق'], url: 'https://sendgrid.com/' }
+            ]
+        }, {
+            id: 'collaboration',
+            name: 'التعاون الجماعي',
+            icon: 'fa-solid fa-people-group',
+            tools: [
+                { name: 'Slack', desc: 'منصة تواصل الفرق مع ميزات ذكاء.', tier: 'free', icon: 'fa-brands fa-slack',
+                    tags: ['تواصل', 'فرق'], url: 'https://slack.com/' },
+                { name: 'Microsoft Teams', desc: 'منصة تواصل وتعاون من مايكروسوفت.', tier: 'free',
+                    icon: 'fa-brands fa-microsoft', tags: ['تواصل', 'مايكروسوفت'], url: 'https://www.microsoft.com/microsoft-teams' },
+                { name: 'Zoom', desc: 'اجتماعات فيديو مع ميزات ذكاء اصطناعي.', tier: 'free', icon: 'fa-solid fa-video',
+                    tags: ['اجتماعات', 'فيديو'], url: 'https://zoom.us/' },
+                { name: 'Miro', desc: 'لوحة بيضاء رقمية للتعاون الإبداعي.', tier: 'free', icon: 'fa-solid fa-palette',
+                    tags: ['لوحة', 'إبداعي'], url: 'https://miro.com/' },
+                { name: 'Mural', desc: 'تعاون بصري للفرق البعيدة.', tier: 'free', icon: 'fa-solid fa-paint-roller',
+                    tags: ['تعاون', 'بعيدة'], url: 'https://www.mural.co/' },
+                { name: 'Figma', desc: 'تصميم واجهات المستخدم والتعاون الجماعي.', tier: 'free',
+                    icon: 'fa-brands fa-figma', tags: ['تصميم', 'تعاون'], url: 'https://www.figma.com/' },
+                { name: 'Google Workspace', desc: 'مجموعة أدوات تعاون من جوجل.', tier: 'free',
+                    icon: 'fa-brands fa-google', tags: ['تعاون', 'جوجل'], url: 'https://workspace.google.com/' }
+            ]
+        }, {
+            id: 'security',
+            name: 'الأمن السيبراني',
+            icon: 'fa-solid fa-shield-halved',
+            tools: [
+                { name: 'Darktrace', desc: 'كشف التهديدات السيبرانية باستخدام الذكاء.', tier: 'paid',
+                    icon: 'fa-solid fa-shield', tags: ['تهديدات', 'ذكاء'], url: 'https://www.darktrace.com/' },
+                { name: 'CrowdStrike', desc: 'حماية النقاط الطرفية باستخدام الذكاء.', tier: 'paid',
+                    icon: 'fa-solid fa-crosshairs', tags: ['نقاط', 'طرفية'], url: 'https://www.crowdstrike.com/' },
+                { name: 'SentinelOne', desc: 'منصة أمنية مدعومة بالذكاء.', tier: 'paid', icon: 'fa-solid fa-s',
+                    tags: ['أمنية', 'ذكاء'], url: 'https://www.sentinelone.com/' },
+                { name: 'Vectra AI', desc: 'كشف التهديدات في الشبكات.', tier: 'paid', icon: 'fa-solid fa-network-wired',
+                    tags: ['تهديدات', 'شبكات'], url: 'https://www.vectra.ai/' },
+                { name: 'Fortinet', desc: 'أمن الشبكات مع ميزات ذكاء اصطناعي.', tier: 'paid',
+                    icon: 'fa-solid fa-fort', tags: ['شبكات', 'ذكاء'], url: 'https://www.fortinet.com/' },
+                { name: 'Palo Alto Networks', desc: 'أمن سحابي وشبكات باستخدام الذكاء.', tier: 'paid',
+                    icon: 'fa-solid fa-p', tags: ['سحابي', 'شبكات'], url: 'https://www.paloaltonetworks.com/' }
+            ]
+        }, {
+            id: 'webscraping',
+            name: 'استخراج البيانات',
+            icon: 'fa-solid fa-spider',
+            tools: [
+                { name: 'Octoparse', desc: 'استخراج بيانات المواقع بدون برمجة.', tier: 'free',
+                    icon: 'fa-solid fa-octopus', tags: ['استخراج', 'بدون برمجة'], url: 'https://www.octoparse.com/' },
+                { name: 'ParseHub', desc: 'أداة استخراج بيانات مرنة.', tier: 'free', icon: 'fa-solid fa-code',
+                    tags: ['استخراج', 'مرنة'], url: 'https://www.parsehub.com/' },
+                { name: 'Webscraper.io', desc: 'استخراج بيانات عبر المتصفح.', tier: 'free',
+                    icon: 'fa-solid fa-globe', tags: ['استخراج', 'متصفح'], url: 'https://webscraper.io/' },
+                { name: 'ScrapingBee', desc: 'استخراج بيانات مع تجنب الحظر.', tier: 'paid', icon: 'fa-solid fa-bee',
+                    tags: ['استخراج', 'حظر'], url: 'https://www.scrapingbee.com/' },
+                { name: 'Apify', desc: 'منصة استخراج بيانات وأتمتة.', tier: 'free', icon: 'fa-solid fa-api',
+                    tags: ['استخراج', 'أتمتة'], url: 'https://apify.com/' },
+                { name: 'Diffbot', desc: 'استخراج بيانات معرفية من الويب.', tier: 'paid', icon: 'fa-solid fa-robot',
+                    tags: ['معرفية', 'ويب'], url: 'https://www.diffbot.com/' }
+            ]
+        }];
+
+        // ================================================================
+        //  RENDER ENGINE
+        // ================================================================
+        const container = document.getElementById('sectionsContainer');
+        const navContainer = document.getElementById('sectionNav');
+        let totalTools = 0;
+
+        function renderAll() {
+            navContainer.innerHTML = categories.map(cat =>
+                `<a href="#${cat.id}" data-cat="${cat.id}"><i class="${cat.icon}"></i> ${cat.name}</a>`
+            ).join('');
+
+            container.innerHTML = categories.map((cat, idx) => {
+                const toolsHtml = cat.tools.map((tool, tIdx) => `
+                        <div class="tool-card" style="animation-delay:${(tIdx * 0.01)}s">
+                            <span class="tier-badge ${tool.tier}">${tool.tier === 'free' ? 'مجاني' : 'غير مجاني'}</span>
+                            <div class="tool-icon"><i class="${tool.icon}"></i></div>
+                            <div class="tool-name">
+                                <a href="${tool.url}" target="_blank" rel="noopener">${tool.name}</a>
+                                <span class="external"><i class="fas fa-up-right-from-square"></i></span>
+                            </div>
+                            <div class="tool-desc">${tool.desc}</div>
+                            <div class="tool-tags">${tool.tags.map(t => `<span>#${t}</span>`).join('')}</div>
+                        </div>
+                    `).join('');
+
+                const gridContent = cat.tools.length ? `<div class="tool-grid">${toolsHtml}</div>` :
+                    `<div class="empty-state"><i class="fas fa-inbox"></i><p>لا توجد أدوات في هذا القسم</p></div>`;
+
+                return `
+                        <section class="category" id="${cat.id}">
+                            <div class="category-header">
+                                <div class="category-title">
+                                    <i class="${cat.icon}"></i> ${cat.name}
+                                    <span class="badge-count">${cat.tools.length}</span>
+                                </div>
+                                <div class="tier-tabs" data-category="${cat.id}">
+                                    <button class="tier-tab active" data-tier="all">الكل</button>
+                                    <button class="tier-tab" data-tier="free">مجاني</button>
+                                    <button class="tier-tab" data-tier="paid">غير مجاني</button>
+                                </div>
+                            </div>
+                            <div class="tool-grid-wrap" id="gridWrap_${cat.id}">${gridContent}</div>
+                        </section>
+                    `;
+            }).join('');
+
+            document.querySelectorAll('.tier-tabs').forEach(tabs => {
+                const catId = tabs.dataset.category;
+                tabs.querySelectorAll('.tier-tab').forEach(tab => {
+                    tab.addEventListener('click', function() {
+                        tabs.querySelectorAll('.tier-tab').forEach(t => t.classList.remove('active'));
+                        this.classList.add('active');
+                        const tier = this.dataset.tier;
+                        filterCategory(catId, tier);
+                    });
+                });
+            });
+
+            totalTools = categories.reduce((acc, c) => acc + c.tools.length, 0);
+            document.getElementById('toolCount').textContent = totalTools;
+
+            navContainer.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.dataset.cat;
+                    const targetEl = document.getElementById(targetId);
+                    if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    navContainer.querySelectorAll('a').forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            setTimeout(() => {
+                const sectionEls = categories.map(c => document.getElementById(c.id)).filter(Boolean);
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const id = entry.target.id;
+                            navContainer.querySelectorAll('a').forEach(link => {
+                                link.classList.toggle('active', link.dataset.cat === id);
+                            });
+                        }
+                    });
+                }, { threshold: 0.3 });
+                sectionEls.forEach(s => observer.observe(s));
+            }, 100);
+        }
+
+        function filterCategory(catId, tier) {
+            const cat = categories.find(c => c.id === catId);
+            if (!cat) return;
+            const wrap = document.getElementById(`gridWrap_${catId}`);
+            if (!wrap) return;
+
+            const filtered = tier === 'all' ? cat.tools : cat.tools.filter(t => t.tier === tier);
+            if (filtered.length === 0) {
+                wrap.innerHTML =
+                    `<div class="empty-state"><i class="fas fa-inbox"></i><p>لا توجد أدوات ${tier === 'free' ? 'مجانية' : 'غير مجانية'} في هذا القسم</p></div>`;
+                return;
+            }
+            const toolsHtml = filtered.map((tool, tIdx) => `
+                    <div class="tool-card" style="animation-delay:${(tIdx * 0.01)}s">
+                        <span class="tier-badge ${tool.tier}">${tool.tier === 'free' ? 'مجاني' : 'غير مجاني'}</span>
+                        <div class="tool-icon"><i class="${tool.icon}"></i></div>
+                        <div class="tool-name">
+                            <a href="${tool.url}" target="_blank" rel="noopener">${tool.name}</a>
+                            <span class="external"><i class="fas fa-up-right-from-square"></i></span>
+                        </div>
+                        <div class="tool-desc">${tool.desc}</div>
+                        <div class="tool-tags">${tool.tags.map(t => `<span>#${t}</span>`).join('')}</div>
+                    </div>
+                `).join('');
+            wrap.innerHTML = `<div class="tool-grid">${toolsHtml}</div>`;
+        }
+
+        // ================================================================
+        //  THEME TOGGLE
+        // ================================================================
+        const themeToggle = document.getElementById('themeToggle');
+        const themeLabel = document.getElementById('themeLabel');
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        updateThemeUI(currentTheme);
+
+        themeToggle.addEventListener('click', function() {
+            const current = document.documentElement.getAttribute('data-theme');
+            const next = current === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            updateThemeUI(next);
+        });
+
+        function updateThemeUI(theme) {
+            const icon = themeToggle.querySelector('i');
+            if (theme === 'dark') {
+                icon.className = 'fas fa-sun';
+                themeLabel.textContent = 'فاتح';
+            } else {
+                icon.className = 'fas fa-moon';
+                themeLabel.textContent = 'داكن';
+            }
+        }
+
+        // ================================================================
+        //  INIT
+        // ================================================================
+        renderAll();
+        console.log(`🏛️ منارة الذكاء | Manarat AI · تم تحميل ${totalTools} أداة في ${categories.length} قسماً`);
+    </script>
+</body>
+</html>
